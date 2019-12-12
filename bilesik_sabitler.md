@@ -22,9 +22,9 @@ int main()
  
 }
 ```
-`main` işlevi içinde tanımlanan `rec` ve `a` nesnelerinin yalnızca `draw_rect` ve `foo` işlevlerine yapılan çağrılarda kullanılmak için tanımlandığını düşünelim. Kod bu niyeti açıkça anlatmadığı için okuyucuyu da yanıltıyor. Ben böyle bir kodu okuduğumda bu nesnelerin kapsamları `(scope)` içinde tekrar kullanılacaklarını düşünüyorum. Bu tür kodlarda bir başka sorun da “kapsam sızıntısı” `(scope leakage)` yani bu isimlerin kapsamlarının gereksiz yere geniş tutulması. Bu nesneler bir daha kullanılmayacak olsalar da kapsamları içinde yanlışlıkla isimlerinin yazılması bir kodlama hatasına neden olabilir.
+`main` işlevi içinde tanımlanan `rec` ve `a` nesnelerinin yalnızca `draw_rect` ve `foo` işlevlerine yapılan çağrılarda kullanılmak için tanımlandığını düşünelim. Kod bu niyeti açıkça anlatmadığı için okuyucuyu da yanıltıyor. Ben böyle bir kodu okuduğumda bu nesnelerin kapsamları `(scope)` içinde tekrar kullanılacaklarını düşünüyorum. Bu tür kodlarda bir başka sorun da "kapsam sızıntısı" `(scope leakage)` yani bu isimlerin kapsamlarının gereksiz yere geniş tutulması. Bu nesneler bir daha kullanılmayacak olsalar da kapsamları içinde yanlışlıkla isimlerinin yazılması bir kodlama hatasına neden olabilir.
 
-Bir `compound literal` kullanarak isimlendirilmemiş bir dizi, yapı ya da birlik nesnesi oluşturabiliriz:
+Bir `bileşik sabit` kullanarak isimlendirilmemiş bir dizi, yapı ya da birlik nesnesi oluşturabiliriz:
 
 ```
 int main()
@@ -51,7 +51,7 @@ Yukarıdaki ifade ile `6` öğeli `int` bir dizi oluşturduk. Dizinin öğe say�
 ```
 (double a[20]) {1., 2., 3.}
 ```
-ifadesi ile `20` öğeli bir dizi oluşturarak dizinin ilk `3` öğesinin alacağı değerleri belirtmiş olduk. Dizinin kalan `17` öğesi `0.` değerleriyle hayata başlayacak. Dizi öğelerine ilk değer verirken yine C99 standartlarıyla dile eklenen `designated initializer` denilen sentaks ile dizinin seçilmiş öğelerine ilk değer verip diğer öğelerini varsayılan değerlerle başlatabiliyoruz:
+ifadesi ile `20` öğeli bir dizi oluşturarak dizinin ilk `3` öğesinin alacağı değerleri belirtmiş olduk. Dizinin kalan `17` öğesi `0.` değerleriyle hayata başlayacak. Dizi öğelerine ilk değer verirken yine `C99` standartlarıyla dile eklenen `designated initializer` denilen sentaks ile dizinin seçilmiş öğelerine ilk değer verip diğer öğelerini varsayılan değerlerle başlatabiliyoruz:
 
 ```
 (int [100]){[12] = 2, [34] = 4, [67] = 6}
@@ -72,7 +72,7 @@ typedef struct {
 	double wage;
 }Employee;
 ```
-Şimdi bu türden nesnelerin oluşturulmasını sağlayacak bazı `“compound literal”` ifadeleri yazalım:
+Şimdi bu türden nesnelerin oluşturulmasını sağlayacak bazı `“bileşik sabit”` ifadeleri yazalım:
 
 ```
 (Employee){"Burhan Koc", 1345, 45.60)
@@ -126,9 +126,9 @@ void f(int x, int y, int z)
 }
 ```
 
-Yukarıda tanımlanan func işlevi içinde oluşturulan `3` öğeli `int` diziye isimlendirilmemiş nesneye işlevin parametre değişkenleri ile ilk değer veriliyor. Diziden adrese dönüşüm `(array to pointer conversion)` kuralı burada da geçerli.
+Yukarıda tanımlanan `func` işlevi içinde oluşturulan `3` öğeli `int` diziye isimlendirilmemiş nesneye işlevin parametre değişkenleri ile ilk değer veriliyor. Diziden adrese dönüşüm `(array to pointer conversion)` kuralı burada da geçerli.
 
-`Compound literal` ifadeleri ile tekil `(scalar)` türlerden de nesneler oluşturmamız mümkün:
+`Bileşik sabit` ifadeleri ile tekil `(scalar)` türlerden de nesneler oluşturmamız mümkün:
 
 ```
 void f()
@@ -191,7 +191,7 @@ int main()
 ```
 
 
-Global kod alanında oluşturulan `“compound literal”` nesneleri, diğer isimlendirilmiş global nesneler gibi statik ömür `(static storage class)` kategorisindeler. Blok içinde oluşturulan nesneler ise otomatik ömre `(automatic storage class)` sahipler:
+Global kod alanında oluşturulan `“bileşik sabit”` nesneleri, diğer isimlendirilmiş global nesneler gibi statik ömür `(static storage class)` kategorisindeler. Blok içinde oluşturulan nesneler ise otomatik ömre `(automatic storage class)` sahipler:
 
 ```
 void f()
@@ -208,7 +208,7 @@ void f()
 }
 ```
 
-Yukarıda tanımlanan func işlevi içinde oluşturulan içsel blokta oluşturulan `int` türden otomatik ömürlü nesnemizin adresini `p` isimli bir pointer değişkene atıyoruz. Otomatik ömürlü nesnenin hayatı oluşturulduğu kapsamı sonlandıran “}” atomunun bulunduğu yerde sona erecek. Bloğun dışındaki kodlar yürütüldüğünde artık nesnemiz hayatta olmadığı için `p` pointer değişkeni bu durumda geçersiz `(dangling)` durumda. Şimdi de aşağıdaki koda bakalım:
+Yukarıda tanımlanan `func` işlevi içinde oluşturulan içsel blokta oluşturulan `int` türden otomatik ömürlü nesnemizin adresini `p` isimli bir göstericideğişkene atıyoruz. Otomatik ömürlü nesnenin hayatı oluşturulduğu kapsamı sonlandıran “}” atomunun bulunduğu yerde sona erecek. Bloğun dışındaki kodlar yürütüldüğünde artık nesnemiz hayatta olmadığı için `p` gösterici değişkeni bu durumda geçersiz `(dangling)` durumda. Şimdi de aşağıdaki koda bakalım:
 
 ```
 typedef struct {
@@ -224,7 +224,8 @@ void drawline()
 }
 ```
 
-Yukarıdaki kodda drawline işlevinin tanımında yer alan for döngüsünün her turunda yeni bir Point nesnesi oluşturuluyor. Böylece işlev `(0,0)` ve `(9, 9)` noktalarını birleştiren bir doğru çiziyor.
+Yukarıdaki kodda `drawline` işlevinin tanımında yer alan for döngüsünün her turunda yeni bir Point nesnesi oluşturuluyor. Böylece işlev `(0,0)` ve `(9, 9)` noktalarını birleştiren bir doğru çiziyor.
+
 `Bileşik Sabit` ifadeleri sabit ifadesi kategorisinde olmadıkları için normal olarak statik ömürlü bir nesneye bir `bileşik sabit` ifadesi ile ilk değer vermemiz geçerli değil:
 
 ```
