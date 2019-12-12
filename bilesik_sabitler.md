@@ -34,6 +34,7 @@ int main()
  
 }
 ```
+
 İşlevlere gönderdiğimiz argümanlar bileşik sabitler. Aslında `struct Rect` türünden bir yapı nesnesini ve `5` öğeli bir `int` diziyi isim vermeden oluşturmuş olduk. Şimdi `compound literal` ifadelerine yönelik sentaksı ayrıntılarıyla ele almaya başlayabiliriz. Önce dizi oluşturan bileşik sabit ifadelerini inceleyelim: Sentaksta yer alması gereken parantez içine dönüşüm türünü `(cast type)` yazıyoruz. Bu oluşturulacak dizinin türü. Daha sonra küme parantezi içinde oluşturacağımız dizinin öğelerine verdiğimiz ilk değerleri listeliyoruz. Örneğin:
 
 ```
@@ -50,17 +51,19 @@ Yukarıdaki ifade ile `6` öğeli `int` bir dizi oluşturduk. Dizinin öğe say�
 ```
 (double a[20]) {1., 2., 3.}
 ```
-ifadesi ile 20 öğeli bir dizi oluşturarak dizinin ilk 3 öğesinin alacağı değerleri belirtmiş olduk. Dizinin kalan 17 öğesi 0. değerleriyle hayata başlayacak. Dizi öğelerine ilk değer verirken yine C99 standartlarıyla dile eklenen “designated initializer” denilen sentaks ile dizinin seçilmiş öğelerine ilk değer verip diğer öğelerini varsayılan değerlerle başlatabiliyoruz:
+ifadesi ile `20` öğeli bir dizi oluşturarak dizinin ilk `3` öğesinin alacağı değerleri belirtmiş olduk. Dizinin kalan `17` öğesi `0.` değerleriyle hayata başlayacak. Dizi öğelerine ilk değer verirken yine C99 standartlarıyla dile eklenen `designated initializer` denilen sentaks ile dizinin seçilmiş öğelerine ilk değer verip diğer öğelerini varsayılan değerlerle başlatabiliyoruz:
 
 ```
 (int [100]){[12] = 2, [34] = 4, [67] = 6}
 ```
 
-Yukarıdaki ifade ile 100 öğeli bir dizi oluşturduk. dizinin sırasıyla 12, 34 ve 67 indisli öğelerine ilk değerlerini verdik ve kalan öğelerinin hayata 0 değerleriyle gelmesini sağladık. “designated initializer” kullanılması durumunda yine dizinin boyutunu belirtmek zorunda değiliz:
+Yukarıdaki ifade ile `100` öğeli bir dizi oluşturduk. dizinin sırasıyla `12, 34` ve `67` indisli öğelerine ilk değerlerini verdik ve kalan öğelerinin hayata `0` değerleriyle gelmesini sağladık. `"designated initializer"` kullanılması durumunda yine dizinin boyutunu belirtmek zorunda değiliz:
 
+```
 (int []){[12] = 2, [34] = 4, [67] = 6}
+```
 
-Yukarıdaki ifade ile bu kez 68 öğeli bir dizi oluşturmuş olduk. Yapı ya da birlik nesnelerinin “compound literal” biçiminde oluşturulması için kullanılması gereken sentaks da neredeyse aynı. Employee isimli bir yapı türünün bildirildiğini düşünelim:
+Yukarıdaki ifade ile bu kez `68` öğeli bir dizi oluşturmuş olduk. Yapı ya da birlik nesnelerinin `“compound literal”` biçiminde oluşturulması için kullanılması gereken sentaks da neredeyse aynı. `Employee` isimli bir yapı türünün bildirildiğini düşünelim:
 
 ```
 typedef struct {
@@ -69,21 +72,26 @@ typedef struct {
 	double wage;
 }Employee;
 ```
-Şimdi bu türden nesnelerin oluşturulmasını sağlayacak bazı “compound literal” ifadeleri yazalım:
+Şimdi bu türden nesnelerin oluşturulmasını sağlayacak bazı `“compound literal”` ifadeleri yazalım:
 
 ```
 (Employee){"Burhan Koc", 1345, 45.60)
 ```
-Yukarıdaki ifade ile Employee türünden bir nesneyi tüm öğelerine ilk değer vererek oluşturduk.
+Yukarıdaki ifade ile `Employee` türünden bir nesneyi tüm öğelerine ilk değer vererek oluşturduk.
 
+```
 (Employee){"Furkan Demirci")
+```
 
-Yukarıdaki ifadede ise oluşturduğumuz Employee nesnesinin yalnızca name isimli öğesine ilk değer verdik. Nesnemizin diğer öğeleri varsayılan değerlerle hayata başlamış oldu.
+Yukarıdaki ifadede ise oluşturduğumuz `Employee` nesnesinin yalnızca name isimli öğesine ilk değer verdik. Nesnemizin diğer öğeleri varsayılan değerlerle hayata başlamış oldu.
 
+```
 (Employee){.id = 7651, .name = "Can Demirci")
+```
 
-Yukarıdaki ifade de ise oluşturduğumuz Employee nesnesinin seçilmiş öğelerine “designated initializer” sentaksı ile ilk değer verdik. Şimdi de aşağıdaki kodu inceleyelim:
+Yukarıdaki ifade de ise oluşturduğumuz `Employee` nesnesinin seçilmiş öğelerine `“designated initializer”` sentaksı ile ilk değer verdik. Şimdi de aşağıdaki kodu inceleyelim:
 
+```
 typedef struct
 {
 	const char *pname;
@@ -104,9 +112,10 @@ int main()
 	//...
 
 }
-Yukarıdaki kodda main işlevi içinde öğeleri Student türünden boyutu 10 olan bir dizi tanımlanıyor ve dizinin belirlenmiş öğelerine ilk değer veriliyor. Daha sonra dizinin 1 ve 2 indisli öğelerine Student türünden bileşik sabit ifadeleri ile atamalar yapılıyor. Aynı türden yapı nesnelerinin birbirlerine atanabildiğini hatırlayalım.
+```
+Yukarıdaki kodda `main` işlevi içinde öğeleri `Student` türünden boyutu 10 olan bir dizi tanımlanıyor ve dizinin belirlenmiş öğelerine ilk değer veriliyor. Daha sonra dizinin `1` ve `2` indisli öğelerine `Student` türünden bileşik sabit ifadeleri ile atamalar yapılıyor. Aynı türden yapı nesnelerinin birbirlerine atanabildiğini hatırlayalım.
 
-Compound literal ifadeleri ile oluşturulan nesnelere sabit ifadeleri (constant expressions) ile ilk değer verme zorunluluğu yok:
+`Compound literal` ifadeleri ile oluşturulan nesnelere sabit ifadeleri `(constant expressions)` ile ilk değer verme zorunluluğu yok:
 
 ```
 void f(int x, int y, int z)
@@ -117,9 +126,9 @@ void f(int x, int y, int z)
 }
 ```
 
-Yukarıda tanımlanan func işlevi içinde oluşturulan 3 öğeli int diziye isimlendirilmemiş nesneye işlevin parametre değişkenleri ile ilk değer veriliyor. Diziden adrese dönüşüm (array to pointer conversion) kuralı burada da geçerli.
+Yukarıda tanımlanan func işlevi içinde oluşturulan `3` öğeli `int` diziye isimlendirilmemiş nesneye işlevin parametre değişkenleri ile ilk değer veriliyor. Diziden adrese dönüşüm `(array to pointer conversion)` kuralı burada da geçerli.
 
-Compound literal ifadeleri ile tekil (scalar) türlerden de nesneler oluşturmamız mümkün olsa da uygulamalarda böyle bir gereksinim olduğunu düşünmüyorum:
+`Compound literal` ifadeleri ile tekil `(scalar)` türlerden de nesneler oluşturmamız mümkün:
 
 ```
 void f()
@@ -132,7 +141,7 @@ void f()
 
 Yukarıdaki örneği yalnızca kodun geçerli olduğunu göstermek için verdim.
 
-“literal” sözcüğü “sabit” anlamında kullanılsa da “compound literals” biçiminde oluşturulan nesnelerin değerlerini değiştirmek tanımlı (defined) davranış niteliğinde:
+`“literal”` sözcüğü `“sabit”` anlamında kullanılsa da `“compound literals”` biçiminde oluşturulan nesnelerin değerlerini değiştirmek tanımlı `(defined)` davranış niteliğinde:
 
 ```
 #include <string.h>
@@ -146,7 +155,7 @@ int main()
 }
 ```
 
-Yukarıdaki örnekte oluşturulan Employee nesnesinin adresi ile p isimli pointer değişkene ilk değer veriliyor. Daha sonraki deyimlerle nesnemizin name ve wage isimli öğelerinin değerlerinin değiştirildiğini görüyorsunuz. Bileşik sabit ifadeleri ile oluşturduğumuz dizileri de değiştirebiliriz:
+Yukarıdaki örnekte oluşturulan `Employee` nesnesinin adresi ile `p` isimli gösterici değişkene ilk değer veriliyor. Daha sonraki deyimlerle nesnemizin `name` ve `wage` isimli öğelerinin değerlerinin değiştirildiğini görüyorsunuz. Bileşik sabit ifadeleri ile oluşturduğumuz dizileri de değiştirebiliriz:
 
 ```
 int main()
@@ -158,7 +167,7 @@ int main()
 }
 ```
 
-Bu şekilde oluşturulan char türden dizilerde tutulan yazıları da değiştirebiliriz:
+Bu şekilde oluşturulan `char` türden dizilerde tutulan yazıları da değiştirebiliriz:
 
 ```
 int main()
@@ -168,7 +177,7 @@ int main()
 	*p = 'S';
 }
 ```
-Ancak bir compound literal ifadesi ile const bir nesne de oluşturmamız mümkün:
+Ancak bir `bileşik sabit` ifadesi ile `const` bir nesne de oluşturmamız mümkün:
 
 ```
 void display_employee(const Employee *p);
@@ -182,7 +191,7 @@ int main()
 ```
 
 
-Global kod alanında oluşturulan “compound literal” nesneleri, diğer isimlendirilmiş global nesneler gibi statik ömür (static storage class) kategorisindeler. Blok içinde oluşturulan nesneler ise otomatik ömre (automatic storage class) sahipler:
+Global kod alanında oluşturulan `“compound literal”` nesneleri, diğer isimlendirilmiş global nesneler gibi statik ömür `(static storage class)` kategorisindeler. Blok içinde oluşturulan nesneler ise otomatik ömre `(automatic storage class)` sahipler:
 
 ```
 void f()
@@ -199,7 +208,7 @@ void f()
 }
 ```
 
-Yukarıda tanımlanan func işlevi içinde oluşturulan içsel blokta oluşturulan int türden otomatik ömürlü nesnemizin adresini p isimli bir pointer değişkene atıyoruz. Otomatik ömürlü nesnenin hayatı oluşturulduğu kapsamı sonlandıran “}” atomunun bulunduğu yerde sona erecek. Bloğun dışındaki kodlar yürütüldüğünde artık nesnemiz hayatta olmadığı için p pointer değişkeni bu durumda geçersiz (dangling) durumda. Şimdi de aşağıdaki koda bakalım:
+Yukarıda tanımlanan func işlevi içinde oluşturulan içsel blokta oluşturulan `int` türden otomatik ömürlü nesnemizin adresini `p` isimli bir pointer değişkene atıyoruz. Otomatik ömürlü nesnenin hayatı oluşturulduğu kapsamı sonlandıran “}” atomunun bulunduğu yerde sona erecek. Bloğun dışındaki kodlar yürütüldüğünde artık nesnemiz hayatta olmadığı için `p` pointer değişkeni bu durumda geçersiz `(dangling)` durumda. Şimdi de aşağıdaki koda bakalım:
 
 ```
 typedef struct {
@@ -215,8 +224,8 @@ void drawline()
 }
 ```
 
-Yukarıdaki kodda drawline işlevinin tanımında yer alan for döngüsünün her turunda yeni bir Point nesnesi oluşturuluyor. Böylece işlev (0,0) ve (9, 9) noktalarını birleştiren bir doğru çiziyor.
-Compound literal ifadeleri sabit ifadesi kategorisinde olmadıkları için normal olarak statik ömürlü bir nesneye bir compound literal ifadesi ile ilk değer vermemiz geçerli değil:
+Yukarıdaki kodda drawline işlevinin tanımında yer alan for döngüsünün her turunda yeni bir Point nesnesi oluşturuluyor. Böylece işlev `(0,0)` ve `(9, 9)` noktalarını birleştiren bir doğru çiziyor.
+`Bileşik Sabit` ifadeleri sabit ifadesi kategorisinde olmadıkları için normal olarak statik ömürlü bir nesneye bir `bileşik sabit` ifadesi ile ilk değer vermemiz geçerli değil:
 
 ```
 struct Point {
@@ -232,8 +241,7 @@ void foo()
 }
 ```
 
-Yukarıdaki kodda foo içinde yapılan tanımlamaların hiçbiri geçerli değil. Ancak bir GNU eklentisiyle GCC derleyicisinde bu mümkün kılınmış. Bu eklenti kullanıldığında yukarıdaki tanımlamalar
-aşağıdaki gibi bir kodla aynı anlama geliyor:
+Yukarıdaki kodda `foo` içinde yapılan tanımlamaların hiçbiri geçerli değil. Ancak bir `GNU` eklentisiyle `GCC` derleyicisinde bu mümkün kılınmış. Bu eklenti kullanıldığında yukarıdaki tanımlamalar aşağıdaki gibi bir kodla aynı anlama geliyor:
 
 ```
 struct Point {
@@ -249,4 +257,4 @@ void foo()
 }
 ```
 
-Bileşik sabit ifadeleri C++ dilinin sentaksında yer almıyor. Ancak başta GCC olmak üzere birçok C++ derleyicisi bu özelliği bir eklenti (extension) olarak kullanıma sunuyor.
+Bileşik sabit ifadeleri C++ dilinin sentaksında yer almıyor. Ancak başta `GCC` olmak üzere birçok `C++` derleyicisi bu özelliği bir eklenti `(extension)` olarak kullanıma sunuyor.
