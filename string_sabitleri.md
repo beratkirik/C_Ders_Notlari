@@ -234,7 +234,7 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki if deyiminde CAN ve ATA isimleri strcmp işlevinin yaptığı biçimde, yani birer yazı olarak karşılaştırılmıyor. Aslında karşılaştırılan yalnızca iki adresin sayısal bileşenleridir.
+Yukarıdaki `if` deyiminde `CAN` ve `ATA` isimleri `strcmp` işlevinin yaptığı biçimde, yani birer yazı olarak karşılaştırılmıyor. Aslında karşılaştırılan yalnızca iki adresin sayısal bileşenleridir.
 
 ## string sabitlerinin ömürleri
 String sabitleri statik ömürlü varlıklardır. String sabitleri ile ifade edilen yazılar, tıpkı global gibi programın yüklenmesiyle bellekte yer kaplamaya başlar, programın sonuna kadar bellekte kalır. Dolayısıyla string sabitleri çalıştırılabilen kodu büyütür. Birçok sistemde statik ömürlü verilerin yerleştirileceği bellek alanının büyüklüğü belli bir sınırlamaya tabidir. String sabitleri derleyici tarafından object modüle bağlayıcı program tarafından da çalıştırılabilir dosyaya yazılır. Programın belleğe yüklenmesiyle hayat kazanırlar.
@@ -265,7 +265,7 @@ int main()
 	return 0;
 }
 ```
-Ancak char türden bir adrese geri dönen bir işlev bir string sabiti ile geri dönebilir. Bu durumda bir çalışma zamanı hatası söz konusu olmaz. Statik ömürlü varlıklar olan string sabitlerine ilişkin yazılar programın çalışma süresi boyunca bellekteki yerlerini korurlar. Örneğin aşağıdaki işlev geçerli ve doğrudur:
+Ancak `char` türden bir adrese geri dönen bir işlev bir string sabiti ile geri dönebilir. Bu durumda bir çalışma zamanı hatası söz konusu olmaz. Statik ömürlü varlıklar olan string sabitlerine ilişkin yazılar programın çalışma süresi boyunca bellekteki yerlerini korurlar. Örneğin aşağıdaki işlev geçerli ve doğrudur:
 
 ```
 const char *get_day_name(int day)
@@ -282,10 +282,10 @@ const char *get_day_name(int day)
     return NULL;
 }
 ```
-Yukarıda tanımlanan get_day_name işlevi bir günün sıra numarasını alarak ilgili günün ismini içeren bir yazının başlangıç adresini döndürüyor. İşleve gönderilen değer istenen aralıkta değil ise işlev NULL adresine geri dönüyor.
+Yukarıda tanımlanan `get_day_name` işlevi bir günün sıra numarasını alarak ilgili günün ismini içeren bir yazının başlangıç adresini döndürüyor. İşleve gönderilen değer istenen aralıkta değil ise işlev `NULL` adresini döndürüyor.
 
 ## string sabitlerinin derleyici tarafından birleştirilmesi
-String sabitleri tek bir atom (token) olarak ele alınır. Bir string sabiti aşağıdaki gibi parçalanamaz:
+String sabitleri tek bir atom `(token)` olarak ele alınır. Bir string sabiti aşağıdaki gibi parçalanamaz:
 
 ```
 void func()
@@ -307,7 +307,7 @@ geçerli bir ifadedir. Bu durumda derleyici iki string sabitini birleştirirek k
 ```
 ptr = "Necati Ergin'in C ders notlarını okuyorsunuz";
 ```
-Derleyicinin iki string sabitini birleştirmesi için, string sabitlerinin arasında boşluk karakterlerinin (white space) dışında hiçbir karakterin olmaması gerekir:
+Derleyicinin iki string sabitini birleştirmesi için, string sabitlerinin arasında boşluk karakterlerinin `(whitespace)` dışında hiçbir karakterin olmaması gerekir:
 
 ```
 p = "Oguz" "Karan";
@@ -340,14 +340,14 @@ satır başındaki boşluk karakterleri de yazıya katılır. Sonuç aşağıdak
 ```
 ptr = "Necati Ergin'in C ders        notlarını okuyorsunuz";
 ```
-string sabitlerinde ters bölü karakter sabitlerinin kullanılması
-String sabitlerinde ters bölü karakter sabitleri de (escape sequence) kullanılabilir. Derleyiciler string sabitleri içinde bir ters bölü karakteri gördüğünde, onu yanındaki karakter ile birlikte tek bir karakter olarak ele alır. Örneğin:
+## string sabitlerinde ters bölü karakter sabitlerinin kullanılması
+String sabitlerinde ters bölü karakter sabitleri de `(escape sequence)` kullanılabilir. Derleyiciler string sabitleri içinde bir ters bölü karakteri gördüğünde, onu yanındaki karakter ile birlikte tek bir karakter olarak ele alır. Örneğin:
 
 ```
 char *p;
 p = "Ali\tCan";
 ```
-Yukarıdaki kodda string sabiti içinde kullanılan \t tek bir karakterdir (9 numaralı ASCII karakteri olan tab karakteri).
+Yukarıdaki kodda string sabiti içinde kullanılan `\t` tek bir karakterdir `(9 numaralı ASCII karakteri olan tab karakteri)`.
 Yani
 
 ```
@@ -359,7 +359,7 @@ deyimi ile ekrana
 yazidaki karakter sayısı = 7
 ```
 yazdırılır.
-String sabitlerinde doğrudan çift tırnak ya da ters bölü karakterleri kullanılamaz. Bu karakterlerin özel işlevleri vardır. Bir string sabiti içinde "çift tırnak" karakter sabitinin kendisini ifade etmek için çift tırnak karakterinden önce bir ters bölü karakteri kullanılır. Örneğin:
+String sabitlerinde doğrudan çift tırnak ya da ters bölü karakterleri kullanılamaz. Bu karakterlerin özel işlevleri vardır. Bir string sabiti içinde `"çift tırnak"` karakter sabitinin kendisini ifade etmek için çift tırnak karakterinden önce bir ters bölü karakteri kullanılır. Örneğin:
 
 ```
 #include <stdio.h>
@@ -371,9 +371,10 @@ int main()
         return 0;
 }
 ```
-main işlevi içinde yapılan çağrı ile ekrana
+`main` işlevi içinde yapılan çağrı ile ekrana
 
-"Kagan Aslan"
+`"Kagan Aslan"`
+
 yazısı yazdırılır. Aşağıdaki koddaki hatayı görebiliyor musunuz?
 
 ```
@@ -412,12 +413,12 @@ int main()
 }
 ```
 ## boş string sabiti
-Bir string sabiti bir boş yazıyı yani uzunluğu sıfır olan bir yazıyı ifade edebilir (null string). Bu durum iki çift tırnak karakterinin arasına hiçbir karakter yazılmaması ile oluşturulur:
+Bir string sabiti bir boş yazıyı yani uzunluğu sıfır olan bir yazıyı ifade edebilir `(null string)`. Bu durum iki çift tırnak karakterinin arasına hiçbir karakter yazılmaması ile oluşturulur:
 
 ```
 const char *ptr = "";
 ```
-Yukarıdaki bildirim ile ptr gösterici değişkenine boş yazı ile ilk değer veriliyor. Boş string sabitleri de bellekte bir adres belirtir. Derleyici boş bir string sabiti gördüğünde, bellekte güvenilir bir yere yalnızca sonlandırıcı karakteri yerleştirir.
+Yukarıdaki bildirim ile `ptr` gösterici değişkenine boş yazı ile ilk değer veriliyor. Boş string sabitleri de bellekte bir adres belirtir. Derleyici boş bir string sabiti gördüğünde, bellekte güvenilir bir yere yalnızca sonlandırıcı karakteri yerleştirir.
 Boş bir yazı uzunluğu sıfır olan bir yazıdır. Aşağıdaki programı derleyerek çalıştırın:
 
 ```
@@ -434,7 +435,7 @@ int main()
 }
 ```
 ## gösterici değişkenlere string sabitlerine ilk değer verilmesi
-char türden gösterici değişkenlere string sabitleri ile ilk değer verilebilir. Örneğin:
+`char` türden gösterici değişkenlere string sabitleri ile ilk değer verilebilir. Örneğin:
 
 ```
 char *p = "İstanbul";
@@ -444,7 +445,8 @@ char *s = "Devam etmek için bir tuşa basınız";
 String sabitleri derleyiciler tarafından char türden bir dizi adresi olarak ele alındığına göre, char türden gösterici değişkenlere string sabitleri ile ilk değer verilmesi doğal bir durumdur.
 Dizilere çift tırnak içinde ilk değer verilmesiyle gösterici değişkenlere çift tırnak içinde ilk değer verilmesi tamamen farklıdır.
 Gösterici değişkenlere string sabitleri ile ilk değer verildiğinde, derleyici string sabitini bir adres ifadesi olarak ele alır. Yani ilgili yazı belleğe yerleştirildikten sonra başlangıç adresi gösterici değişkene atanır. Oysa dizilerde önce dizi için yer ayrılır, daha sonra karakterler tek tek dizi elemanlarına yerleştirilir. Dizilere ilkdeğer verirken kullanılan çift tırnak ifadeleri adres bilgisine dönüştürülmez. Dizi elemanlarına tek tek char türden sabitlere ilk değer verme işlemi zahmetli olduğu için, programcının işini kolaylaştırmak amacı ile böyle bir ilkdeğer verme kuralı getirilmiştir.
-Bir char diziye ilk değer vermek ile, gösterici değişkenlere string sabitlerine ilk değer vermek arasındaki farka dikkat etmek gerekir:
+
+Bir `char` diziye ilk değer vermek ile, gösterici değişkenlere string sabitlerine ilk değer vermek arasındaki farka dikkat etmek gerekir:
 
 ```
 char *p = "Deneme";
@@ -454,12 +456,13 @@ deyimi aslında
 char s[10] = {'D', 'e', 'n', 'e', 'm', 'e', '\0'};
 ```
 ile aynı anlamdadır.
-C'de geleneksel olarak string sabitlerinin char * türden gösterici değişkenlere atanması ya da ilk değer olarak verilmesi doğru kabul edilir. Ancak C++ dilinde bu yanlıştır ve çoğru durumda derleyicinin kontrolüne tabidir. String sabitleri salt okunur amaçlı kullanılacak yazılar olduğuna göre bunları gösterecek göstericilerin de yalnızca okuma amaçlı olarak kullanılacak, yazma işlemine izin vermeyecek göstericiler olması daha doğrudur. Kodlama hatalarına karşı string sabitlerinin char * türünden değil const char * türünden göstericilere atanması daha doğrudur.
 
-yazı tutan char türden dizilerle bir string sabitini gösteren char türden göstericilerin karşılaştırılması
-C dilinde bir yazı bilgisi en az iki ayrı biçimde saklanabilir:
+C'de geleneksel olarak string sabitlerinin `char *` türden gösterici değişkenlere atanması ya da ilk değer olarak verilmesi doğru kabul edilir. Ancak `C++` dilinde bu durum sentaks hatasıdır. String sabitleri salt okunur amaçlı kullanılacak yazılar olduğuna göre bunları gösterecek göstericilerin de yalnızca okuma amaçlı olarak kullanılacak, yazma işlemine izin vermeyecek göstericiler olması daha doğrudur. Kodlama hatalarına karşı string sabitlerinin `char *` türünden değil `const char *` türünden göstericilere atanması daha doğrudur.
 
-1. Bir yazı char türden bir dizi içinde tutulabilir:
+yazı tutan `char` türden dizilerle bir string sabitini gösteren `char` türden göstericilerin karşılaştırılması
+`C` dilinde bir yazı bilgisi en az iki ayrı biçimde saklanabilir:
+
+1. Bir yazı `char` türden bir dizi içinde tutulabilir:
 
 ```
 #include <stdio.h>
@@ -477,9 +480,9 @@ void foo()
 	/***/
 }
 ```
-Yukarıdaki kodda tanımlanan foo işlevinde char türden s1 dizisine Ali Serce yazısı ile ilk değer veriliyor. Yine char türden s2 dizisine ise standart fgets işlevi ile standart giriş akımından bir yazı alınıyor. s2 dizisindeki yazı, standart strcpy işlevi ile s3 dizisine kopyalanıyor.
+Yukarıdaki kodda tanımlanan `foo` işlevinde char türden `s1` dizisine `Ali Serce` yazısı ile ilk değer veriliyor. Yine char türden `s2` dizisine ise standart `fgets` işlevi ile standart giriş akımından bir yazı alınıyor. `s2` dizisindeki yazı, standart `strcpy` işlevi ile `s3` dizisine kopyalanıyor.
 
-2. Yazı doğrudan bir string sabiti olarak kullanılır. Ya da char türden bir gösterici değişkenin bir string sabitine ilişkin yazıyı göstermesi sağlanır:
+2. Yazı doğrudan bir string sabiti olarak kullanılır. Ya da `char` türden bir gösterici değişkenin bir string sabitine ilişkin yazıyı göstermesi sağlanır:
 
 ```
 const char *ptr = "Necati Ergin";
@@ -493,25 +496,25 @@ p = "artık yukarıdaki yazı ile bir bağlantı kalmayacak...";
 ```
 Statik ömürlü varlıkların saklanacağı bellek alanının kısıtlı olduğu sistemlerde, string sabitlerinin kullanımına dikkat etmek gerekir.
 
-Yazının (const olmayan) char türden bir dizi içinde tutulması durumunda bu yazıyı değiştirmek mümkündür. Dizi öğelerine yeniden atamalar yapılarak yazı istenildiği gibi değiştirilebilir. Ama string sabitlerine ilişkin yazıların değiştirilmesi tanımsız davranış özelliği gösterir, bir hatadır.
-char türden bir dizi otomatik ömürlü ya da statik ömürlü olabilir. Yani yazının bellekte kalma süresi dizinin ömrünün otomatik ya da statik ömürlü olmasına göre farklılık gösterir.
+Yazının `(const olmayan) char` türden bir dizi içinde tutulması durumunda bu yazıyı değiştirmek mümkündür. Dizi öğelerine yeniden atamalar yapılarak yazı istenildiği gibi değiştirilebilir. Ama string sabitlerine ilişkin yazıların değiştirilmesi tanımsız davranış özelliği gösterir, bir hatadır.
+`char` türden bir dizi otomatik ömürlü ya da statik ömürlü olabilir. Yani yazının bellekte kalma süresi dizinin ömrünün otomatik ya da statik ömürlü olmasına göre farklılık gösterir.
 
 ## strlen işlevi ve sizeof işleci
 Yazılar söz konusu olduğunda sizeof işleciyle strlen işlevinin birbiriyle karıştırılması sık karşılaşılan bir durumdur.
-sizeof derleme zamanında ele alınan bir işleçtir. Yani sizeof işlecinin ürettiği size_t türünden değer derleyici tarafından derleme zamanında elde edilir. sizeof'un bir isim (identifier) olmadığını bir anahtar sözcük (keyword) olduğunu biliyorsunuz.
+`sizeof` derleme zamanında ele alınan bir işleçtir. Yani `sizeof` işlecinin ürettiği `size_t` türünden değer derleyici tarafından derleme zamanında elde edilir. `sizeof`'un bir isim (identifier) olmadığını bir anahtar sözcük `(keyword)` olduğunu biliyorsunuz.
 
 ```
 sizeof("necati")
 ```
-ifadesi size_t türündendir ve bu ifadenin değeri derleyicinin "necati" yazısını yerleştirdiği dizinin boyutu yani 7'dir.
-Oysa strlen C’nin standart bir işlevidir. Şüphesiz bu işlevin size_t türünden geri dönüş değeri programın çalışması sırasında elde edilir. strlen işlevinin geri dönüş değeri, adresi alınan yazının uzunluğudur:
+ifadesi `size_t` türündendir ve bu ifadenin değeri derleyicinin `"necati"` yazısını yerleştirdiği dizinin boyutu yani `7`'dir.
+Oysa `strlen` `C`’nin standart bir işlevidir. Şüphesiz bu işlevin `size_t` türünden geri dönüş değeri programın çalışması sırasında elde edilir. `strlen` işlevinin geri dönüş değeri, adresi alınan yazının uzunluğudur:
 
 ```
 strlen("necati")
 ```
-ifadesinin size_t türünden olan değeri "necati", yazısının uzunluğu, yani 6'dır.
+ifadesinin `size_t` türünden olan değeri `"necati"`, yazısının uzunluğu, yani `6`'dır.
 
-string sabitleri nerelerde kullanılmalı
+## string sabitleri nerelerde kullanılmalı
 Programın çalışma zamanında dinamik olarak içeriği değişmeyen, kaynak kod içinde salt okuma amacıyla kullanılacak yazıların string sabitleriyle ifade edilmesi kaynak kodun daha kolay okunmasını ve anlaşılmasını sağlar. Aşağıdaki örneği inceleyin:
 
 ```
@@ -549,5 +552,7 @@ int main()
 }
 ```
 Yukarıdaki main işlevinde fileName isimli diziye standart giriş akımından bir dosya ismi alınıyor.  Eger standart giriş akımından alınıp diziye kopyalanmış bir '\n' karakteri var ise bu karakterin yeri strchr işlevi ile ile bulunuyor ve bu karakterin yerine sonlandırıcı karakter yazılıyor. Böylece yazının sonundaki '\n' karakteri silinmiş oluyor. Diziye alınan isim daha sonra standart strcpy işleviyle newFileName isimli diziye kopyalanıyor.
-Standart strrchr işleviyle, kopyalanan yazı içinde '.' karakterinin olup olmadığı, yani dosya isminin bir uzantısı olup olmadığı sınanıyor. Eğer ismin içinde nokta karakteri varsa bu karakterin adresi ptr isimli gösterici değişkende tutuluyor. Dosya isminin uzantısı yoksa, standart strcat işleviyle yazının sonuna ".dat" yazısı ekleniyor. Bu durumda artık dosya isminin uzantısı "dat" olur, değil mi? Daha sonra standart strcmp işleviyle, dosya ismi uzantısının "doc", "gif" ya da "exe" olup olmadığı sınanıyor. Dosyanın uzantısı "doc" ise bu uzantı "txt", "gif "ise uzantı "jpg" olarak değiştiriliyor. Eğer dosya uzantısı "exe" ise, dosyanın uzantısı siliniyor. Bunun dışındaki tüm durumlarda dosya uzantıları, "nec" yapılıyor.
-Tüm bu işlemlerin yapılmasında okuma amaçlı yazılar için string sabitlerinin kullanıldığını görüyorsunuz. Bu amaçla string sabitlerinin kullanılması yerine char türden diziler kullanılsaydı programın algısal karmaşıklığı artar, okuyanlar hangi yazıların kullanıldığını kolayca göremezlerdi.
+
+Standart `strrchr` işleviyle, kopyalanan yazı içinde `'.'` karakterinin olup olmadığı, yani dosya isminin bir uzantısı olup olmadığı sınanıyor. Eğer ismin içinde nokta karakteri varsa bu karakterin adresi `ptr` isimli gösterici değişkende tutuluyor. Dosya isminin uzantısı yoksa, standart `strcat` işleviyle yazının sonuna `".dat"` yazısı ekleniyor. Bu durumda artık dosya isminin uzantısı `"dat"` olur, değil mi? Daha sonra standart `strcmp` işleviyle, dosya ismi uzantısının `"doc", "gif"` ya da `"exe"` olup olmadığı sınanıyor. Dosyanın uzantısı `"doc"` ise bu uzantı `"txt"`, `"gif` "ise uzantı `"jpg"` olarak değiştiriliyor. Eğer dosya uzantısı `"exe"` ise, dosyanın uzantısı siliniyor. Bunun dışındaki tüm durumlarda dosya uzantıları, `"nec"` yapılıyor.
+
+Tüm bu işlemlerin yapılmasında okuma amaçlı yazılar için string sabitlerinin kullanıldığını görüyorsunuz. Bu amaçla string sabitlerinin kullanılması yerine `char` türden diziler kullanılsaydı programın algısal karmaşıklığı artar, okuyanlar hangi yazıların kullanıldığını kolayca göremezlerdi.
