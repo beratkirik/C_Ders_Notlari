@@ -195,7 +195,7 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki programda `str` bir dizinin ismi. `str` ismi işleme sokulduğunda derleyici tarafından otomatik olarak bu dizinin başlangıç adresine dönüştürülür. `pstr` ise `char` türden bir gösterici değişkendir. pstr gösterici değişkenine `"bukalemun"` string sabiti ile ilk değer verildiğinde, derleyici önce `"bukalemun"` yazısını bellekte güvenli bir yere yerleştirir. Daha sonra `pstr` değişkenini yazının yerleştirildiği yerin başlangıç adresi ile hayata başlatır. Kullanıcının, parola olarak "bukalemun" girişi yaptığını varsayın. Bu durumda `if` deyimi içinde yalnızca s adresiyle `pstr` değişkeninin değeri olan adresin eşit olup olmadığı sınanır. Bu adresler eşit olmadıkları için ekrana `"yanlış parola"` yazılır. İki yazının birbirine eşit olup olmadığı standart `strcmp` işlevi ile sınanmalıydı:
+Yukarıdaki programda `str` bir dizinin ismi. `str` ismi işleme sokulduğunda derleyici tarafından otomatik olarak bu dizinin başlangıç adresine dönüştürülür. `pstr` ise `char` türden bir gösterici değişkendir. `pstr` gösterici değişkenine `"bukalemun"` string sabiti ile ilk değer verildiğinde, derleyici önce `"bukalemun"` yazısını bellekte güvenli bir yere yerleştirir. Daha sonra `pstr` değişkenini yazının yerleştirildiği yerin başlangıç adresi ile hayata başlatır. Kullanıcının, parola olarak `"bukalemun"` girişi yaptığını varsayın. Bu durumda `if` deyimi içinde yalnızca `s` adresiyle `pstr` değişkeninin değeri olan adresin eşit olup olmadığı sınanır. Bu adresler eşit olmadıkları için ekrana `"yanlış parola"` yazılır. İki yazının birbirine eşit olup olmadığı standart `strcmp` işlevi ile sınanmalıydı:
 
 ```
 #include <stdio.h>
@@ -295,7 +295,7 @@ void func()
         /***/
 }
 ```
-Ancak yazıların uzunlukları arttıkça, hem onların bir string sabiti olarak tek bir satırda yazılması hem de kodda bu yazıların okunması zorlaşır. Kod editörlerinde bir satırlık görüntüye sığmayan yazılar kaynak kodun okunmasını zorlaştırır. Uzun yazılara ilişkin string sabitlerinin parçalanmasına olanak vermek amacıyla, C dilinde aralarında boşluk karakteri dışında başka bir karakter olmayan string sabitleri derleyici tarafından birleştirerek tek bir string sabiti olarak ele alınır. Örneğin:
+Ancak yazıların uzunlukları arttıkça, hem onların bir string sabiti olarak tek bir satırda yazılması hem de kodda bu yazıların okunması zorlaşır. Kod editörlerinde bir satırlık görüntüye sığmayan yazılar kaynak kodun okunmasını zorlaştırır. Uzun yazılara ilişkin string sabitlerinin parçalanmasına olanak vermek amacıyla, `C` dilinde aralarında boşluk karakteri dışında başka bir karakter olmayan string sabitleri derleyici tarafından birleştirerek tek bir string sabiti olarak ele alınır. Örneğin:
 
 ```
 ptr = "Necati Ergin'in C ders "
@@ -480,7 +480,7 @@ void foo()
 	/***/
 }
 ```
-Yukarıdaki kodda tanımlanan `foo` işlevinde char türden `s1` dizisine `Ali Serce` yazısı ile ilk değer veriliyor. Yine char türden `s2` dizisine ise standart `fgets` işlevi ile standart giriş akımından bir yazı alınıyor. `s2` dizisindeki yazı, standart `strcpy` işlevi ile `s3` dizisine kopyalanıyor.
+Yukarıdaki kodda tanımlanan `foo` işlevinde char türden `s1` dizisine `Ali Serce` yazısı ile ilk değer veriliyor. Yine `char` türden `s2` dizisine ise standart `fgets` işlevi ile standart giriş akımından bir yazı alınıyor. `s2` dizisindeki yazı, standart `strcpy` işlevi ile `s3` dizisine kopyalanıyor.
 
 2. Yazı doğrudan bir string sabiti olarak kullanılır. Ya da `char` türden bir gösterici değişkenin bir string sabitine ilişkin yazıyı göstermesi sağlanır:
 
@@ -551,7 +551,7 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki main işlevinde fileName isimli diziye standart giriş akımından bir dosya ismi alınıyor.  Eger standart giriş akımından alınıp diziye kopyalanmış bir '\n' karakteri var ise bu karakterin yeri strchr işlevi ile ile bulunuyor ve bu karakterin yerine sonlandırıcı karakter yazılıyor. Böylece yazının sonundaki '\n' karakteri silinmiş oluyor. Diziye alınan isim daha sonra standart strcpy işleviyle newFileName isimli diziye kopyalanıyor.
+Yukarıdaki `main` işlevinde `fileName` isimli diziye standart giriş akımından bir dosya ismi alınıyor.  Eger standart giriş akımından alınıp diziye kopyalanmış bir `'\n'` karakteri var ise bu karakterin yeri strchr işlevi ile ile bulunuyor ve bu karakterin yerine sonlandırıcı karakter yazılıyor. Böylece yazının sonundaki `'\n'` karakteri silinmiş oluyor. Diziye alınan isim daha sonra standart `strcpy` işleviyle newFileName isimli diziye kopyalanıyor.
 
 Standart `strrchr` işleviyle, kopyalanan yazı içinde `'.'` karakterinin olup olmadığı, yani dosya isminin bir uzantısı olup olmadığı sınanıyor. Eğer ismin içinde nokta karakteri varsa bu karakterin adresi `ptr` isimli gösterici değişkende tutuluyor. Dosya isminin uzantısı yoksa, standart `strcat` işleviyle yazının sonuna `".dat"` yazısı ekleniyor. Bu durumda artık dosya isminin uzantısı `"dat"` olur, değil mi? Daha sonra standart `strcmp` işleviyle, dosya ismi uzantısının `"doc", "gif"` ya da `"exe"` olup olmadığı sınanıyor. Dosyanın uzantısı `"doc"` ise bu uzantı `"txt"`, `"gif` "ise uzantı `"jpg"` olarak değiştiriliyor. Eğer dosya uzantısı `"exe"` ise, dosyanın uzantısı siliniyor. Bunun dışındaki tüm durumlarda dosya uzantıları, `"nec"` yapılıyor.
 
