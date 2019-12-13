@@ -1,6 +1,6 @@
 # String Sabitleri
 
-C dilinde çift tırnak içinde yazılan karakterlerin oluşturduğu atomlara (token) string sabiti (string literal) denir. Örneğin:
+C dilinde çift tırnak içinde yazılan karakterlerin oluşturduğu atomlara `(token)` string sabiti `(string literal)` denir. Örneğin:
 
 ```
 "Necati Ergin"
@@ -8,13 +8,13 @@ C dilinde çift tırnak içinde yazılan karakterlerin oluşturduğu atomlara (t
 "lütfen bir tamsayı giriniz : "
 ```
 ifadelerinin hepsi string sabitleridir.
-C'de bir string sabiti, derleyiciler tarafından aslında char türden bir dizi (array) olarak ele alınır ve bir ifade içinde kullanıldığında söz konusu dizinin adresine dönüştürülür. C derleyicileri, derleme aşamasında bir string sabiti ile karşılaştığında, bu stringi oluşturan karakterleri belleğin güvenli bir bölgesine, sonunda sonlandırıcı karakter (null character) olacak şekilde yerleştirecek bir kod üretirler. Bu durumda string sabitleri kod içinde kullanıldıklarında aslında, derleyici tarafından oluşturulan dizilerin başlangıç adresleri olarak ele alınırlar. Örneğin:
+C'de bir string sabiti, derleyiciler tarafından aslında `char` türden bir dizi `(array)` olarak ele alınır ve bir ifade içinde kullanıldığında söz konusu dizinin adresine dönüştürülür. C derleyicileri, derleme aşamasında bir string sabiti ile karşılaştığında, bu stringi oluşturan karakterleri belleğin güvenli bir bölgesine, sonunda sonlandırıcı karakter `(null character)` olacak şekilde yerleştirecek bir kod üretirler. Bu durumda string sabitleri kod içinde kullanıldıklarında aslında, derleyici tarafından oluşturulan dizilerin başlangıç adresleri olarak ele alınırlar. Örneğin:
 
 ```
 char *p = "CAN";
 ```
-gibi bir kod parçasının derlenmesi sırasında, derleyici önce "CAN" yazısını taşıyacak 4 elemanlı bir char dizi için belleğin güvenli bir bölgesinde yer ayırır ve bu diziye CAN yazısı ile ilk değer verir. Daha sonra bu dizinin adresiyle p gösterici değişkenine ilk değer verecek şekilde kod üretir.
-Bir string sabiti kod içinde char türden bir dizinin başlangıç adresi olarak ele alındığına göre, bir string sabitinin char türden bir adres gereken yerde kullanılması geçerlidir. Aşağıdaki main işlevini derleyerek oluşturacağınız programı çalıştırın:
+gibi bir kod parçasının derlenmesi sırasında, derleyici önce `"CAN"` yazısını taşıyacak `4` elemanlı bir `char` dizi için belleğin güvenli bir bölgesinde yer ayırır ve bu diziye `CAN` yazısı ile ilk değer verir. Daha sonra bu dizinin adresiyle `p` gösterici değişkenine ilk değer verecek şekilde kod üretir.
+Bir string sabiti kod içinde `char` türden bir dizinin başlangıç adresi olarak ele alındığına göre, bir string sabitinin `char` türden bir adres gereken yerde kullanılması geçerlidir. Aşağıdaki `main` işlevini derleyerek oluşturacağınız programı çalıştırın:
 
 ```
 #include <stdio.h>
@@ -27,7 +27,7 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki kodda main işlevi içinde yapılan ilk printf çağrısında "Gurbuz" string sabiti ile %p format dönüştürme karakterleri eşleniyor. printf işlevi ile, adres bilgilerinin sayısal bileşenlerinin %p format dönüştürme karakteriyle ekrana onaltılık sayı sisteminde yazdırılabileceğini hatırlayın. Bu durumda çalışan kod, derleyicinin "Gurbuz" yazısının yerleştirdiği dizinin başlangıç adresini ekrana yazar. İkinci printf çağrısında ise "Gurbuz" yazısı %s format dönüştürme karakteri ile eşleniyor. Bu durumda ekrana ilgili adresteki yazı, yani
+Yukarıdaki kodda `main` işlevi içinde yapılan ilk `printf` çağrısında`"Gurbuz"` string sabiti ile `%p` format dönüştürme karakterleri eşleniyor. `printf` işlevi ile, adres bilgilerinin sayısal bileşenlerinin `%p` format dönüştürme karakteriyle ekrana onaltılık sayı sisteminde yazdırılabileceğini hatırlayın. Bu durumda çalışan kod, derleyicinin `"Gurbuz"` yazısının yerleştirdiği dizinin başlangıç adresini ekrana yazar. İkinci `printf` çağrısında ise `"Gurbuz"` yazısı `%s` format dönüştürme karakteri ile eşleniyor. Bu durumda ekrana ilgili adresteki yazı, yani
 
 ```
 Gurbuz
@@ -37,13 +37,13 @@ yazısı yazdırılır. Şimdi de aşağıdaki çağrıya bakın:
 ```
 putchar(*"Kagan");
 ```
-"Kagan" string sabitinin bu kez içerik işlecinin terimi olduğunu görüyorsunuz. İçerik işleci, terimi olan adresteki nesneye erişimi sağladığına göre, bu nesnenin değeri 'K karakterinin kod numarasıdır. Çağrılan putchar işlevinin çalışmasıyla standart çıkış akımına K karakteri verilir.
-Aşağıda tanımlanan getHexChar işlevi, onaltılık sayı sisteminde bir basamak değeri hangi karakter ile gösteriliyorsa, o karakterin kullanılan karakter setindeki kod numarasını döndürüyor:
+`"Kagan"` string sabitinin bu kez içerik işlecinin terimi olduğunu görüyorsunuz. İçerik işleci, terimi olan adresteki nesneye erişimi sağladığına göre, bu nesnenin değeri `'K'` karakterinin kod numarası olan tamsayıdır. Çağrılan `putchar` işlevinin çalışmasıyla standart çıkış akımına `K` karakteri verilir.
+Aşağıda tanımlanan `get_hex_char` işlevi, onaltılık sayı sisteminde bir basamak değeri hangi karakter ile gösteriliyorsa, o karakterin kullanılan karakter setindeki kod numarasını döndürüyor:
 
 ```
 #include <stdio.h>
 
-int getHexChar(int val)
+int get_hex_char(int val)
 {
 	return "0123456789ABCDEF"[val];
 }
@@ -53,7 +53,7 @@ int main()
 	int k;
 
 	for (k = 0; k < 16; ++k)
-		putchar(getHexChar(k));
+		putchar(get_hex_char(k));
 
 	return 0;
 }
@@ -63,12 +63,12 @@ int main()
 ```
 "0123456789ABCDEF"[val]
 ```
-ifadesinin değeridir. Bu da string sabitine ilişkin yazının yerleştirildiği dizinin val indisli karakterinin değeridir. char türden bu nesnenin değeri de yazıda yer alan karakterlerden herhangi birinin kod numarasıdır. main işlevinde 0 – 15 aralığındaki tamsayı değerleri döngü içinde getHexChar işlevine gönderilerek işlevden geri dönüş değeri ile alınan karakterler putchar işlevi ile standart çıkış akımına gönderiliyor. Programın ekran çıktısı aşağıdaki gibi olur:
+ifadesinin değeridir. Bu da string sabitine ilişkin yazının yerleştirildiği dizinin val indisli karakterinin değeridir. `char` türden bu nesnenin değeri de yazıda yer alan karakterlerden herhangi birinin kod numarasıdır. `main` işlevinde `0 – 15` aralığındaki tamsayı değerleri döngü içinde `get_hex_char` işlevine gönderilerek işlevden geri dönüş değeri ile alınan karakterler `putchar` işlevi ile standart çıkış akımına gönderiliyor. Programın ekran çıktısı aşağıdaki gibi olur:
 
 ```
 0123456789ABCDEF
 ```
-String sabitlerine karşılık gelen dizilerin bellekte kaplayacakları yer (storage) derleme zamanında derleyici tarafından belirlenir. Aşağıdaki program her çalıştırıldığında ekrana hep aynı adres değeri yazılır:
+String sabitlerine karşılık gelen dizilerin bellekte kaplayacakları yer `(storage)` derleme zamanında derleyici tarafından belirlenir. Aşağıdaki program her çalıştırıldığında ekrana hep aynı adres değeri yazılır:
 
 ```
 #include <stdio.h>
@@ -85,7 +85,7 @@ int main()
 ```
 
 ## string sabitleri salt okunur yazılardır
-String sabitleri salt okunur bellek alanlarında tutulabilir. C dilinin standartlarına göre bir string sabitinde yer alan karakterlerin kaynak kod içinde değiştirilme girişimi tanımsız davranıştır (undefined behavior). Aşağıdaki örneği inceleyin:
+String sabitleri salt okunur bellek alanlarında tutulabilir. C dilinin standartlarına göre bir string sabitinde yer alan karakterlerin kaynak kod içinde değiştirilme girişimi tanımsız davranıştır `(undefined behavior)`. Aşağıdaki örneği inceleyin:
 
 ```
 #include <stdio.h>
@@ -100,18 +100,19 @@ int main()
 	return 0;
 }
 ```
-main işlevi içinde tanımlanan ptr isimli gösterici değişken "Durak" yazısını gösteriyor. Yazılan kod C dilinin sentaksına uygun olmasına karşın, ptr gösterici değişkeninin gösterdiği yazının değiştirilmesi tanımsız davranıştır. Bazı derleyiciler seçeneğe bağlı olarak (compiler switches) string sabitlerinin değiştirilmesine olanak veren kod üretebilirler. Programcıya derleyiciler tarafından sunulan bu seçenek geçmişe doğru uyumluluğun korunması gibi çok özel durumlarda kullanılmalıdır.
+`main` işlevi içinde tanımlanan `ptr` isimli gösterici değişken `"Durak"` yazısını gösteriyor. Yazılan kod `C` dilinin sentaksına uygun olmasına karşın, `ptr` gösterici değişkeninin gösterdiği yazının değiştirilmesi tanımsız davranıştır. Bazı derleyiciler seçeneğe bağlı olarak `(compiler switches)` string sabitlerinin değiştirilmesine olanak veren kod üretebilirler. Programcıya derleyiciler tarafından sunulan bu seçenek geçmişe doğru uyumluluğun korunması gibi çok özel durumlarda kullanılmalıdır.
 
 ## string sabitlerinin işlevlere argüman olarak gönderilmesi
-Parametre değişkeni char türden bir gösterici olan (char *) bir işlevi, char türden bir adres ile çağırmak gerektiğini biliyorsunuz. Çünkü char türden bir gösterici değişkene, doğal olarak char türden bir adres atanmalıdır. Derleyiciler açısından string sabitleri de char türden bir dizi olduklarına göre, parametre değişkeni char türden gösterici olan bir işlevi, bir string sabiti ile çağırmak son derece doğal bir durumdur:
+Parametre değişkeni char türden bir gösterici olan `(char *)` bir işlevi, `char` türden bir adres ile çağırmak gerektiğini biliyorsunuz. Çünkü `char` türden bir gösterici değişkene, doğal olarak `char` türden bir adres atanmalıdır. Derleyiciler açısından string sabitleri de `char` türden bir dizi olduklarına göre, parametre değişkeni `char` türden gösterici olan bir işlevi, bir string sabiti ile çağırmak son derece doğal bir durumdur:
 
 ```
 puts("Kagan Aslan");
 ```
 
-Burada derleyici "Kagan Aslan" yazısını belleğe yerleştirip sonuna sonlandırıcı karakteri koyduktan sonra artık bu string sabitini, karakterlerini yerleştirdiği bellek bloğunun başlangıç adresi olarak görür. puts işlevinin parametre değişkenine de artık char türden bir adres kopyalanır. puts işlevi parametre değişkeninde tutulan adresten başlayarak sonlandırıcı karakteri görene kadar tüm karakterleri ekrana yazar. Bu durumda ekranda
+Burada derleyici `"Kagan Aslan"` yazısını belleğe yerleştirip sonuna sonlandırıcı karakteri koyduktan sonra artık bu string sabitini, karakterlerini yerleştirdiği bellek bloğunun başlangıç adresi olarak görür. `puts` işlevinin parametre değişkenine de artık `char` türden bir adres kopyalanır. `puts` işlevi parametre değişkeninde tutulan adresten başlayarak sonlandırıcı karakteri görene kadar tüm karakterleri ekrana yazar. Bu durumda ekranda
 
-Kagan Aslan
+`Kagan Aslan`
+
 yazısı çıkar.
 
 ```
@@ -128,9 +129,9 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki kodda "Oguz Karan" yazısı str adresine kopyalanır. String sabiti ifadelerinin derleyici tarafından char türden bir dizinin adresi olarak ele alındığı düşünülmelidir.
+Yukarıdaki kodda `"Oguz Karan"` yazısı `str` adresine kopyalanır. String sabiti ifadelerinin derleyici tarafından `char` türden bir dizinin adresi olarak ele alındığı düşünülmelidir.
 
-C dilinde bir yazı üstünde işlem yapacak bir işlevin parametre değişkeninin char * olarak bildirilmesinin, bu işlevin adresini aldığı diziye bir yazma işlemi yapacağını ya da adresini aldığı yazıyı değiştireceği anlamına geldiğini hatırlayalım. Eğer işlevin parametre değişkeni const char * olarak (low level const) bildirilmiş ise işlev adresini aldığı yazıyı yalnızca okuma amacıyla kullanacak demektir. Bir string sabiti salt okunur bir yazıyı ifade ettiğinden yalnızca parametresi const char * türden olan işlevlere gönderilmelidir. Eğer bir string sabiti yazma amaçlı bir işleve argüman olarak gönderilirse tanımsız davranış oluşur:
+`C` dilinde bir yazı üstünde işlem yapacak bir işlevin parametre değişkeninin `char*` olarak bildirilmesinin, bu işlevin adresini aldığı diziye bir yazma işlemi yapacağını ya da adresini aldığı yazıyı değiştireceği anlamına geldiğini hatırlayalım. Eğer işlevin parametre değişkeni `const char *` olarak `(low level const)` bildirilmiş ise işlev adresini aldığı yazıyı yalnızca okuma amacıyla kullanacak demektir. Bir string sabiti salt okunur bir yazıyı ifade ettiğinden yalnızca parametresi `const char *` türden olan işlevlere gönderilmelidir. Eğer bir string sabiti yazma amaçlı bir işleve argüman olarak gönderilirse tanımsız davranış oluşur:
 
 ```
 #include <string.h>
@@ -144,15 +145,15 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki kodda p isimli gösterici değişkene bir string sabiti ile ilk değer veriliyor. Daha sonra p değişkeninin değeri olan adres, bir POSIX işlevi olan strrev'e argüman olarak gönderiliyor. strrev işlevinin bildirimi şöyle:
+Yukarıdaki kodda `p` isimli gösterici değişkene bir string sabiti ile ilk değer veriliyor. Daha sonra p değişkeninin değeri olan adres, bir `POSIX` işlevi olan `strrev`'e argüman olarak gönderiliyor. `strrev` işlevinin bildirimi şöyle:
 
 ```
 char *strrev(char *p);
 ```
-strrev adresini aldığı yazıyı ters çeviriyor. Bu durumda strrev işlevi, değiştirilmemesi gereken yani salt okuma amacıyla kullanılması gereken "mustafa" yazısını değiştirme girişiminde bulunacak ve çalışma zamanı hatası oluşacak.
+`strrev` adresini aldığı yazıyı ters çeviriyor. Bu durumda `strrev` işlevi, değiştirilmemesi gereken yani salt okuma amacıyla kullanılması gereken `"mustafa"` yazısını değiştirme girişiminde bulunacak ve çalışma zamanı hatası oluşacak.
 
 ## özdeş string sabitleri
-C derleyicileri kaynak kodun çeşitli yerlerinde tamamen özdeş string sabitlerine rastlasa bile bunlar için farklı yerler ayırabilir. Ya da derleyici, string sabitlerinin salt okunur yazılar olmasına dayanarak, özdeş string sabitlerinin yalnızca bir kopyasını bellekte saklayabilir. Özdeş string sabitlerine ilişkin yazıların bellekte nasıl saklanacağı derleyicinin seçimine bırakılmıştır. Birçok derleyici, özdeş string sabitlerinin bellekte nasıl tutulacakları konusunda programcının seçim yapmasına olanak verir.
+`C` derleyicileri kaynak kodun çeşitli yerlerinde tamamen özdeş string sabitlerine rastlasa bile bunlar için farklı yerler ayırabilir. Ya da derleyici, string sabitlerinin salt okunur yazılar olmasına dayanarak, özdeş string sabitlerinin yalnızca bir kopyasını bellekte saklayabilir. Özdeş string sabitlerine ilişkin yazıların bellekte nasıl saklanacağı derleyicinin seçimine bırakılmıştır. Birçok derleyici, özdeş string sabitlerinin bellekte nasıl tutulacakları konusunda programcının seçim yapmasına olanak verir.
 
 ## string sabitlerinin karşılaştırılması
 string sabitlerinin doğrudan karşılaştırılması yanlış bir işlemdir:
@@ -173,7 +174,7 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki kodun çalıştırılması durumunda, ekrana "yanlış" ya da "doğru" yazdırılması garanti altında değildir. Üretilecek kod derleyiciye bağlı olarak değişebilir. Eğer derleyici iki "Ankara" yazısını bellekte ayrı ayrı yerlere yerleştirmiş ise, == karşılaştırma işleci 0 (yanlış) değerini üretir. Ancak bir derleyici, "Ankara" yazısını tek bir yere yerleştirip her iki string sabitini de aynı adres olarak da ele alabilir. Böyle bir durumda == karşılaştırma işleci 1 (doğru) değerini üretir.
+Yukarıdaki kodun çalıştırılması durumunda, ekrana `"yanlış"` ya da `"doğru"` yazdırılması garanti altında değildir. Üretilecek kod derleyiciye bağlı olarak değişebilir. Eğer derleyici iki `"Ankara"` yazısını bellekte ayrı ayrı yerlere yerleştirmiş ise, `==` karşılaştırma işleci` 0 (yanlış)` değerini üretir. Ancak bir derleyici, `"Ankara"` yazısını tek bir yere yerleştirip her iki string sabitini de aynı adres olarak da ele alabilir. Böyle bir durumda `==` karşılaştırma işleci `1 (doğru)` değerini üretir.
 Benzer bir yanlışlık aşağıdaki kod parçasında da yapılıyor:
 
 ```
@@ -194,7 +195,7 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki programda str bir dizinin ismi. str ismi işleme sokulduğunda derleyici tarafından otomatik olarak bu dizinin başlangıç adresine dönüştürülür. pstr ise char türden bir gösterici değişkendir. pstr gösterici değişkenine "bukalemun" string sabiti ile ilk değer verildiğinde, derleyici önce "bukalemun" yazısını bellekte güvenli bir yere yerleştirir. Daha sonra pstr değişkenini yazının yerleştirildiği yerin başlangıç adresi ile hayata başlatır. Kullanıcının, parola olarak "bukalemun" girişi yaptığını varsayın. Bu durumda if deyimi içinde yalnızca s adresiyle pstr değişkeninin değeri olan adresin eşit olup olmadığı sınanır. Bu adresler eşit olmadıkları için ekrana "yanlış parola" yazılır. İki yazının birbirine eşit olup olmadığı standart strcmp işlevi ile sınanmalıydı:
+Yukarıdaki programda `str` bir dizinin ismi. `str` ismi işleme sokulduğunda derleyici tarafından otomatik olarak bu dizinin başlangıç adresine dönüştürülür. `pstr` ise `char` türden bir gösterici değişkendir. pstr gösterici değişkenine `"bukalemun"` string sabiti ile ilk değer verildiğinde, derleyici önce `"bukalemun"` yazısını bellekte güvenli bir yere yerleştirir. Daha sonra `pstr` değişkenini yazının yerleştirildiği yerin başlangıç adresi ile hayata başlatır. Kullanıcının, parola olarak "bukalemun" girişi yaptığını varsayın. Bu durumda `if` deyimi içinde yalnızca s adresiyle `pstr` değişkeninin değeri olan adresin eşit olup olmadığı sınanır. Bu adresler eşit olmadıkları için ekrana `"yanlış parola"` yazılır. İki yazının birbirine eşit olup olmadığı standart `strcmp` işlevi ile sınanmalıydı:
 
 ```
 #include <stdio.h>
