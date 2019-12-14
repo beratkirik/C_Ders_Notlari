@@ -512,13 +512,13 @@ Bir tamsayının belirli bitlerini sıfırlamak için ne yapılabilir? Örneğin
 
 Bu tamsayının onaltılık sayı sisteminde gösterimi
 
-0XF7CF
+`0XF7CF`
 
 biçimindedir, değil mi?
 
-x &= 0xFC7F;
+`x &= 0xFC7F;`
 
-Şimdi de bir tamsayının bitlerini standart çıkış akımına yazdıran showBits isimli işlevi tanımlayalım. Sayının ilk olarak en yüksek anlamlı bitini yazdırmalıyız, değil mi?
+Şimdi de bir tamsayının bitlerini standart çıkış akımına yazdıran `showBits` isimli işlevi tanımlayalım. Sayının ilk olarak en yüksek anlamlı bitini yazdırmalıyız, değil mi?
 
 ```
 #include <stdio.h>
@@ -539,7 +539,8 @@ int main()
 	showBits(val);
 
 	return 0;
-}```
+}
+```
 
 showBits işlevinde i değişkenine tamsayının bit sayısının bir eksiği ile ilk değer veriliyor. Örneğin 32 bitlik int türü için i değişkeni 31 değeriyle hayata başlayacak. i >> 31 ifadesini 1 değeri ile bitsel ve işlemine sokarak sayının 31. bitinin 1 mi 0 mı olduğunu öğreneceğiz.
 
