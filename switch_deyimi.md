@@ -48,6 +48,7 @@ cuma
 cumartesi
 pazar
 ```
+
 Eğer uygun `case` ifadesi bulunduğunda yalnızca bu ifadeye ilişkin deyim(ler)in yürütülmesi istenirse `break` kontrol deyiminden faydalanılır. `break` deyiminin kullanılmasıyla, döngülerden olduğu gibi `switch` deyiminden de çıkılabilir. Daha önce verilen örnekteki koda `break` deyimlerini ekliyoruz:
 
 ```
@@ -72,9 +73,10 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki kodda scanf işlevi ile, standart giriş akımından `n` değişkenine yine `3` değeri alınmış olsun. Bu durumda programın ekran çıktısı şu şekilde olur:
 
-carsamba
+Yukarıdaki kodda `scanf` işlevi ile, standart giriş akımından `n` değişkenine yine `3` değeri alınmış olsun. Bu durumda programın ekran çıktısı şu şekilde olur:
+
+`carsamba`
 
 Uygulamalarda, `switch` deyiminde çoğunlukla her `case` ifadesi için bir `break` deyimi kullanılır. Tabi böyle bir zorunluluk yoktur.
 `switch` deyiminin ana bloğu tek bir bilinirlik alanı `(scope)` kabul edilir. Bir `case` etiketini birden fazla deyimin izlemesi durumunda bu deyimlerin bloklanmasına gerek yoktur. `case` ifadelerinin belirli bir sırayı izlemesi gibi bir zorunluluk yoktur. `switch` parantezi içindeki tamsayı ifadesinin değerine eşit bir `case` ifadesi bulunamaz ise `switch` deyiminden bir şey yapılmadan çıkılır.
