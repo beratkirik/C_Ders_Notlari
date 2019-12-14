@@ -104,15 +104,15 @@ int main()
 ```
 Yukarıdaki kodda yer alan
 
-x <<= 1
+`x <<= 1`
 
 ifadesi
 
-x = x << 1
+`x = x << 1`
 
 ifadesi ile aynı anlamdadır.
 
-Bir tamsayıyı, sola bitsel olarak 1 pozisyon kaydırmakla o tamsayının ikiyle çarpılmış değerini elde etmiş oluruz:
+Bir tamsayıyı, sola bitsel olarak `1` pozisyon kaydırmakla o tamsayının ikiyle çarpılmış değerini elde etmiş oluruz:
 
 ```
 #include <stdio.h>
@@ -131,7 +131,7 @@ int main()
 }
 ```
 
-Bitsel sağa kaydırma işleci, sol terimi olan tamsayının, sağ terimi olan tamsayı kadar pozisyon sağa kaydırılmış değerini üretir. Sol terim işaretsiz (unsigned) bir tamsayı türünden ise, ya da işaretli (signed) bir tamsayı türünden ancak pozitif değere sahip ise, sınır dışına çıkan bitler yerine, sayının solundan besleme 0 biti ile yapılır. Sağa kaydırılacak ifadenin işaretli bir tamsayı türünden ve negatif değerde olması durumunda sınır dışına çıkan bitler için soldan yapılacak beslemenin 0 ya da 1 bitleriyle yapılması derleyiciye bağlıdır (implementation defined). Yani derleyiciler bu durumda sayının işaretini korumak için soldan yapılacak beslemeyi 1 biti ile yapabilecek bir kod üretebilecekleri gibi, sayının işaretini korumayı düşünmeksizin 0 biti ile besleyecek bir kod da üretebilirler. İşaretli negatif bir tamsayının bitsel sağa kaydırılması taşınabilir bir özellik değildir. Aşağıdaki koda bakalım:
+Bitsel sağa kaydırma işleci, sol terimi olan tamsayının, sağ terimi olan tamsayı kadar pozisyon sağa kaydırılmış değerini üretir. Sol terim işaretsiz `(unsigned)` bir tamsayı türünden ise, ya da işaretli `(signed)` bir tamsayı türünden ancak pozitif değere sahip ise, sınır dışına çıkan bitler yerine, sayının solundan besleme 0 biti ile yapılır. Sağa kaydırılacak ifadenin işaretli bir tamsayı türünden ve negatif değerde olması durumunda sınır dışına çıkan bitler için soldan yapılacak beslemenin `0` ya da `1` bitleriyle yapılması derleyiciye bağlıdır `(implementation defined)`. Yani derleyiciler bu durumda sayının işaretini korumak için soldan yapılacak beslemeyi `1` biti ile yapabilecek bir kod üretebilecekleri gibi, sayının işaretini korumayı düşünmeksizin 0 biti ile besleyecek bir kod da üretebilirler. İşaretli negatif bir tamsayının bitsel sağa kaydırılması taşınabilir bir özellik değildir. Aşağıdaki koda bakalım:
 
 ```
 void bprint(int val);
@@ -151,11 +151,11 @@ int main()
 
 Yukarıdaki kodda
 
-~(~0u >> 1)
+`~(~0u >> 1)`
 
-ifadesiyle en yüksek anlamlı biti 1 diğer tüm bitleri 0 olan işaretsiz tamsayı elde ediliyor.
+ifadesiyle en yüksek anlamlı biti 1 diğer tüm bitleri `0` olan işaretsiz tamsayı elde ediliyor.
 
-Bir tamsayıyı sağa bitsel olarak 1 kaydırmakla, o sayının ikiye bölünmüş değeri elde edilir:
+Bir tamsayıyı sağa bitsel olarak `1` kaydırmakla, o sayının ikiye bölünmüş değeri elde edilir:
 
 ```
 #include <stdio.h>
@@ -177,17 +177,17 @@ int main()
 Bitsel kaydırma işleçlerinin yan etkileri yoktur. Yani sol terimleri bir nesne ise, bu nesnenin bellekteki değeri değişmez. Kaydırma işlemi ile sol terim olan nesnenin değeri değiştirilmek isteniyorsa, bu işleçlerin işlemli atama biçimleri kullanılmalıdır.
 Bitsel kaydırma işleçlerinin öncelik yönü soldan sağadır:
 
-x << 4 >> 8
+`x << 4 >> 8`
 
-x, 16 bitlik işaretsiz bir tamsayı değişken olsun. Yukarıdaki ifade derleyici tarafından
+`x`, `16` bitlik işaretsiz bir tamsayı değişken olsun. Yukarıdaki ifade derleyici tarafından
 
-(x << 4) >> 8
+`(x << 4) >> 8`
 
 biçiminde ele alınır. Bu ifade ile x değişkeninin ortadaki 8 bitinin tamsayı değeri elde edilir.
 
 ## bitsel ve işleci 
 
-"Bitsel ve" işleci (bitwise and), işleç öncelik tablomuzun 8. seviyesinde yer alıyor. Bu seviyenin öncelik yönü soldan sağadır (left associative). İşlecin terimleri  nesne gösteren ifadeler ise, bu nesnelerin değerleri değişmez, yani işlecin yan etkisi yoktur. İşlecimiz değer üretmek için terimi olan tamsayıların karşılıklı bitlerini "ve" işlemine sokar. "ve" işlecine ilişkin işlem tablosunu hatırlayalım:
+"Bitsel ve" işleci `(bitwise and)`, işleç öncelik tablomuzun 8. seviyesinde yer alıyor. Bu seviyenin öncelik yönü soldan sağadır `(left associative)`. İşlecin terimleri  nesne gösteren ifadeler ise, bu nesnelerin değerleri değişmez, yani işlecin yan etkisi yoktur. İşlecimiz değer üretmek için terimi olan tamsayıların karşılıklı bitlerini "ve" işlemine sokar. "ve" işlecine ilişkin işlem tablosunu hatırlayalım:
 
 ```
 x	  y	  x & y
@@ -388,15 +388,11 @@ int main()
 
 Bitsel değil işlecinin dışında, tüm bitsel işleçlere ilişkin işlemli atama biçimleri vardır. Daha önce de belirtildiği gibi bitsel işleçlerin yan etkileri (side effect) yoktur. Bitsel işleçler terimleri olan nesnelerin bellekteki değerlerini değiştirmez. Bir bitsel işleç ile bir nesnenin değerinin değiştirilmesi isteniyorsa yazma ve okuma kolaylığı için için işlemli atma işleçleri tercih edilmelidir:
 
-x = x << y   yerine       x <<= y
-
-x = x >> y   yerine       x >>= y
-
-x = x & y    yerine       x &= y
-
-x = x ^ y    yerine       x ^= y
-
-x = x | y    yerine       x |= y
+`x = x << y` yerine `x <<= y`
+`x = x >> y` yerine `x >>= y`
+`x = x & y` yerine `x &= y`
+`x = x ^ y` yerine `x ^= y`
+`x = x | y` yerine `x |= y`
 
 ifadeleri kullanılabilir.
 
