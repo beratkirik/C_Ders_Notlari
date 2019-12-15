@@ -195,7 +195,7 @@ biçiminde ele alınır. Bu ifade ile `x` değişkeninin ortadaki `8` bitinin ta
 
 ## bitsel ve işleci 
 
-"Bitsel ve" operatörü `(bitwise and)`, operatör öncelik tablomuzun 8. seviyesinde yer alıyor. Bu seviyenin öncelik yönü soldan sağadır `(left associative)`. İşlecin terimleri nesne gösteren ifadeler ise, bu nesnelerin değerleri değişmez, yani operatörün yan etkisi yoktur. İşlecimiz değer üretmek için operandı olan tamsayıların karşılıklı bitlerini "ve" işlemine sokar. "ve" operatörüne ilişkin işlem tablosunu hatırlayalım:
+"Bitsel ve" operatörü `(bitwise and)`, operatör öncelik tablomuzun 8. seviyesinde yer alıyor. Bu seviyenin öncelik yönü soldan sağadır `(left associative)`. Operatörün terimleri nesne gösteren ifadeler ise, bu nesnelerin değerleri değişmez, yani operatörün yan etkisi yoktur. Operatör değer üretmek için operandı olan tamsayıların karşılıklı bitlerini "ve" işlemine sokar. "ve" operatörüne ilişkin işlem tablosunu hatırlayalım:
 
 ```
 x	  y	  x & y
@@ -370,7 +370,7 @@ int main()
 }
 ```
 
-Mantıksal operatörlerden farklı olarak bitsel operatörler kısa devre davranışına sahip değildir. Yani bu operatörlerin her iki terimi de mutlaka işlenir. 
+Mantıksal operatörlerden farklı olarak bitsel operatörler kısa devre davranışına sahip değildir. Yani bu operatörlerin her iki operandı da mutlaka işlenir. 
 
 ```
 #include <stdio.h>
@@ -640,7 +640,7 @@ x & 0xFF           ---> 0x86 ---> asbc[0x86]  ---->3
 31     00000000000000000000000000011111
 ```
 
-Bu durumda eğer bir sayı 2'nin kuvveti ise, bu sayının kendisi ile bir eksiğinin bitsel ve işlemine sokulması durumunda 0 değeri elde edilmelidir. 0 tamsayısı 2'nin kuvveti olmamasına karşın bu kurala uyar. Bu yüzden makromuzda tamsayının 0 olması olasılığını da göz önüne alıyoruz:
+Bu durumda eğer bir sayı `2`'nin kuvveti ise, bu sayının kendisi ile bir eksiğinin bitsel ve işlemine sokulması durumunda `0` değeri elde edilmelidir. `0` tamsayısı `2`'nin kuvveti olmamasına karşın bu kurala uyar. Bu yüzden makromuzda tamsayının `0` olması olasılığını da göz önüne alıyoruz:
 
 ```
 #define isPowerOfTwo(x)    ((x) && !((x) & (x - 1)))
