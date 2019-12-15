@@ -14,28 +14,28 @@ void bprint(int val)
 }
 ```
 
-Tanımladığımız `bprint` işlevi kendisine gönderilen tamsayının bitlerini yazdırmak için `Posix` işlevi  `itoa`'yı ve formatlı çıkış işlevi `printf`'i kullandı. Şüphesiz bir tamsayının bitlerini yazdırmanın daha iyi yolu doğrudan bitsel işleçleri kullanmak. Bitsel işleçleri ele aldıktan sonra bu işlevin kodunu bu kez doğrudan bitsel işleçleri kullanarak yazacağız.
+Tanımladığımız `bprint` işlevi kendisine gönderilen tamsayının bitlerini yazdırmak için `Posix` işlevi `itoa`'yı ve formatlı çıkış işlevi `printf`'i kullandı. Şüphesiz bir tamsayının bitlerini yazdırmanın daha iyi yolu doğrudan bitsel operatörleri kullanmak. Bitsel operatörleri ele aldıktan sonra bu işlevin kodunu bu kez doğrudan bitsel operatörleri kullanarak yazacağız.
 
-Önce C'nin tüm bitsel işleçlerini `(bitwise operators)` tanıyalım:
+Önce `C`'nin tüm bitsel operatörlerini `(bitwise operators)` tanıyalım:
 
-Bitsel işleçler, bir tamsayının bitleri üzerinde işlemler yaparlar. Daha çok sistem programlarında ya da düşük seviyeli kodlarda kullanılırlar. Bitsel işleçlerin ortak özellikleri, işleme soktukları tamsayıları bir bütün olarak değil, bit bit `(bitwise)` ele almalarıdır. Bu işleçlerin terimleri `(operands)` yalnızca tamsayı türlerinden olabilir. Terimlerinin gerçek sayı türlerinden olması geçersizdir.
+Bitsel operatörler, bir tamsayının bitleri üzerinde işlemler yaparlar. Daha çok sistem programlarında ya da düşük seviyeli kodlarda kullanılırlar. Bitsel operatörlerin ortak özellikleri, işleme soktukları tamsayıları bir bütün olarak değil, bit bit `(bitwise)` ele almalarıdır. Bu operatörlerin operandları  yalnızca tamsayı türlerinden olabilir. Operandlarının gerçek sayı türlerinden olması geçersizdir.
 
-Aşağıdaki tabloda C dilinde yer alan `11` bitsel işleç daha önce oluşturmuş olduğumuz işleç öncelik tablosundaki öncelik seviyerine göre listeleniyor:
+Aşağıdaki tabloda C dilinde yer alan `11` bitsel operatör daha önce oluşturmuş olduğumuz operatör öncelik tablosundaki öncelik seviyerine göre listeleniyor:
 
 ```
-işleç önceliği        atom                işleç
-2                      ~                  bitsel değil
-5                      >> <<              bitsel sağa kaydırma / bitsel sola kaydırma
-8                       &                 bitsel ve
-9	                    ^                   bitsel özel veya
-10	                  |	                  bitsel veya
-14	                  >>= <<= &= ^=|=	    bitsel işlemli atama işleçleri
+operatör önceliği        atom                		operatör
+2                      ~                  	bitsel değil
+5                      >> <<              	bitsel sağa kaydırma / bitsel sola kaydırma
+8                       &                 	bitsel ve
+9	          	^                   	bitsel özel veya
+10	             	|	 		bitsel veya
+14	         	>>= <<= &= ^=|=	   	bitsel işlemli atama operatörleri
 ```
 
-Yukarıdaki işleçler içinde, yalnızca "bitsel değil" `(bitwise not)` işleci, tek terimli önek konumunda `(unary prefix)` bir işleçtir. Diğerleri iki terimli `(binary)` ara ek konumunda `(infix)` bulunan işleçlerdir.
+Yukarıdaki operatörler içinde, yalnızca "bitsel değil" `(bitwise not)` operatörü, tek terimli önek konumunda `(unary prefix)` bir operatördür. Diğerleri iki terimli `(binary)` ara ek konumunda `(infix)` bulunan operatörlerdir.
 
-## bitsel değil işleci
-Bitsel değil işleci `(bitwise not)`, diğer tüm tek terimli `(unary)` işleçler gibi işleç öncelik tablomuzun ikinci seviyesinde yer alıyor. Bu işleç, terimi olan tamsayının bitleri üzerinde `1`'e tümleme `(one's complement)` işlemi yaparak bir değer elde eder. Yani terimi olan tamsayının `1` olan bitlerini `0`, `0` olan bitlerini `1` yapacak şekilde bir değer üretir. Bu işlecin terimi bir nesne ise bu nesnenin değeri değişmez. Yani işlecin yan etkisi `(side effect)` yoktur. Aşağıda programı inceleyin:
+## bitsel değil operatörü
+Bitsel değil operatörü `(bitwise not)`, diğer tüm tek operandlı `(unary)` operatörler gibi operatör öncelik tablomuzun ikinci seviyesinde yer alıyor. Bu operatör, operandı olan tamsayının bitleri üzerinde `1`'e tümleme `(one's complement)` işlemi yaparak bir değer elde eder. Yani operandı olan tamsayının `1` olan bitlerini `0`, `0` olan bitlerini `1` yapacak şekilde bir değer üretir. Bu operatörün operandı bir nesne ise bu nesnenin değeri değişmez. Yani operatörün yan etkisi `(side effect)` yoktur. Aşağıda programı inceleyin:
 
 ```
 int main()
@@ -52,7 +52,7 @@ int main()
 }
 ```
 
-int türünün `32` bit olduğu benim çalıştığım sistemde örnek bir program çıktısı şu şekildeydi:
+`int` türünün `32` bit olduğu benim çalıştığım sistemde örnek bir program çıktısı şu şekildeydi:
 
 ```
 bir tamsayi giriniz: 6542
@@ -77,17 +77,17 @@ int main()
 
 Bütün bitleri `0` olan `0` tamsayısının bitsel değili bütün bitleri `1` olan sayıdır. Bu sayı işaretli olarak ele alındığında `-1` ve işaretsiz olarak ele alındığında işaretsiz int türünün en büyük değeridir, değil mi?
 
-## bitsel kaydırma işleçleri
+## bitsel kaydırma operatörleri
 
-İki tane bitsel kaydırma işleci `(bitwise shift operator)` vardır:
-Bitsel sağa kaydırma işleci >> `(bitwise right shift)`
-Bitsel sola kaydırma işleci << `bitwise left shift)`
+İki tane bitsel kaydırma operatörü `(bitwise shift operator)` vardır:
+Bitsel sağa kaydırma operatörü >> `(bitwise right shift)`
+Bitsel sola kaydırma operatörü << `bitwise left shift)`
 
-Her iki işleç de, (oluşturduğumuz) öncelik tablosunun `5.` seviyesindedir. Dolayısıyla bu işleçlerin önceliği tüm aritmetik işleçlerden daha düşük, fakat karşılaştırma işleçlerinden daha yüksektir. Ara ek konumunda bulunan bitsel kaydırma işleçlerinin iki terimleri vardır `(binary infix)`.
+Her iki operatör de, (oluşturduğumuz) öncelik tablosunun `5.` seviyesindedir. Dolayısıyla bu operatörlerin önceliği tüm aritmetik operatörlerden daha düşük, fakat karşılaştırma işleçlerinden daha yüksektir. Ara ek konumunda bulunan bitsel kaydırma operatörlerinin iki terimleri vardır `(binary infix)`.
 
-Kaydırma işleçlerinin sağ terimi, negatif değerde olmamalı ve sistemin int türünün toplam bit sayısından daha küçük olmalıdır. Bu koşullar sağlanmamış ise oluşan durum tanımsızdır `(undefined behaviour)`. Örneğin `Windows` sistemlerinde `int` türden bir değerin `32` ya da daha fazla sola ya da sağa kaydırılması tanımsızdır. Bu durumdan kaçınılmalıdır.
+Kaydırma işleçlerinin sağ terimi, negatif değerde olmamalı ve sistemin `int` türünün toplam bit sayısından daha küçük olmalıdır. Bu koşullar sağlanmamış ise oluşan durum tanımsızdır `(undefined behaviour)`. Örneğin `Windows` sistemlerinde `int` türden bir değerin `32` ya da daha fazla sola ya da sağa kaydırılması tanımsızdır. Bu durumdan kaçınılmalıdır.
 
-Bitsel sola kaydırma işleci, sol terimi olan tamsayının, sağ terimi olan olan tamsayı kadar pozisyon sola kaydırılmasından elde edilen değeri üretir. Sınır dışına çıkan bitler için, sayının sağından 0 biti ile besleme yapılır. Aşağıdaki kodu inceleyin:
+Bitsel sola kaydırma operatörü, sol terimi olan tamsayının, sağ terimi olan olan tamsayı kadar pozisyon sola kaydırılmasından elde edilen değeri üretir. Sınır dışına çıkan bitler için, sayının sağından `0` biti ile besleme yapılır. Aşağıdaki kodu inceleyin:
 
 ```
 void bprint(int val);
@@ -104,11 +104,15 @@ int main()
 ```
 Yukarıdaki kodda yer alan
 
-`x <<= 1`
+```
+x <<= 1
+```
 
 ifadesi
 
-`x = x << 1`
+```
+x = x << 1
+```
 
 ifadesi ile aynı anlamdadır.
 
@@ -131,7 +135,7 @@ int main()
 }
 ```
 
-Bitsel sağa kaydırma işleci, sol terimi olan tamsayının, sağ terimi olan tamsayı kadar pozisyon sağa kaydırılmış değerini üretir. Sol terim işaretsiz `(unsigned)` bir tamsayı türünden ise, ya da işaretli `(signed)` bir tamsayı türünden ancak pozitif değere sahip ise, sınır dışına çıkan bitler yerine, sayının solundan besleme 0 biti ile yapılır. Sağa kaydırılacak ifadenin işaretli bir tamsayı türünden ve negatif değerde olması durumunda sınır dışına çıkan bitler için soldan yapılacak beslemenin `0` ya da `1` bitleriyle yapılması derleyiciye bağlıdır `(implementation defined)`. Yani derleyiciler bu durumda sayının işaretini korumak için soldan yapılacak beslemeyi `1` biti ile yapabilecek bir kod üretebilecekleri gibi, sayının işaretini korumayı düşünmeksizin 0 biti ile besleyecek bir kod da üretebilirler. İşaretli negatif bir tamsayının bitsel sağa kaydırılması taşınabilir bir özellik değildir. Aşağıdaki koda bakalım:
+Bitsel sağa kaydırma operatörü, sol terimi olan tamsayının, sağ operandı olan tamsayı kadar pozisyon sağa kaydırılmış değerini üretir. Sol operand işaretsiz `(unsigned)` bir tamsayı türünden ise, ya da işaretli `(signed)` bir tamsayı türünden ancak pozitif değere sahip ise, sınır dışına çıkan bitler yerine, sayının solundan besleme `0` biti ile yapılır. Sağa kaydırılacak ifadenin işaretli bir tamsayı türünden ve negatif değerde olması durumunda sınır dışına çıkan bitler için soldan yapılacak beslemenin `0` ya da `1` bitleriyle yapılması derleyiciye bağlıdır `(implementation defined)`. Yani derleyiciler bu durumda sayının işaretini korumak için soldan yapılacak beslemeyi `1` biti ile yapabilecek bir kod üretebilecekleri gibi, sayının işaretini korumayı düşünmeksizin 0 biti ile besleyecek bir kod da üretebilirler. İşaretli negatif bir tamsayının bitsel sağa kaydırılması taşınabilir bir özellik değildir. Aşağıdaki koda bakalım:
 
 ```
 void bprint(int val);
@@ -153,7 +157,7 @@ Yukarıdaki kodda
 
 `~(~0u >> 1)`
 
-ifadesiyle en yüksek anlamlı biti 1 diğer tüm bitleri `0` olan işaretsiz tamsayı elde ediliyor.
+ifadesiyle en yüksek anlamlı biti `1` diğer tüm bitleri `0` olan işaretsiz tamsayı elde ediliyor.
 
 Bir tamsayıyı sağa bitsel olarak `1` kaydırmakla, o sayının ikiye bölünmüş değeri elde edilir:
 
@@ -174,20 +178,24 @@ int main()
 }
 ```
 
-Bitsel kaydırma işleçlerinin yan etkileri yoktur. Yani sol terimleri bir nesne ise, bu nesnenin bellekteki değeri değişmez. Kaydırma işlemi ile sol terim olan nesnenin değeri değiştirilmek isteniyorsa, bu işleçlerin işlemli atama biçimleri kullanılmalıdır.
+Bitsel kaydırma operatörlerinin yan etkileri yoktur. Yani sol operandları bir nesne ise, bu nesnenin bellekteki değeri değişmez. Kaydırma işlemi ile sol terim olan nesnenin değeri değiştirilmek isteniyorsa, bu operatörlerin işlemli atama biçimleri kullanılmalıdır.
+
 Bitsel kaydırma işleçlerinin öncelik yönü soldan sağadır:
 
 `x << 4 >> 8`
 
 `x`, `16` bitlik işaretsiz bir tamsayı değişken olsun. Yukarıdaki ifade derleyici tarafından
 
-`(x << 4) >> 8`
+```
+x << 4 >> 8
+```
 
-biçiminde ele alınır. Bu ifade ile x değişkeninin ortadaki 8 bitinin tamsayı değeri elde edilir.
+
+biçiminde ele alınır. Bu ifade ile `x` değişkeninin ortadaki `8` bitinin tamsayı değeri elde edilir.
 
 ## bitsel ve işleci 
 
-"Bitsel ve" işleci `(bitwise and)`, işleç öncelik tablomuzun 8. seviyesinde yer alıyor. Bu seviyenin öncelik yönü soldan sağadır `(left associative)`. İşlecin terimleri  nesne gösteren ifadeler ise, bu nesnelerin değerleri değişmez, yani işlecin yan etkisi yoktur. İşlecimiz değer üretmek için terimi olan tamsayıların karşılıklı bitlerini "ve" işlemine sokar. "ve" işlecine ilişkin işlem tablosunu hatırlayalım:
+"Bitsel ve" operatörü `(bitwise and)`, operatör öncelik tablomuzun 8. seviyesinde yer alıyor. Bu seviyenin öncelik yönü soldan sağadır `(left associative)`. İşlecin terimleri  nesne gösteren ifadeler ise, bu nesnelerin değerleri değişmez, yani operatörün yan etkisi yoktur. İşlecimiz değer üretmek için operandı olan tamsayıların karşılıklı bitlerini "ve" işlemine sokar. "ve" operatörüne ilişkin işlem tablosunu hatırlayalım:
 
 ```
 x	  y	  x & y
@@ -197,10 +205,10 @@ x	  y	  x & y
 1	  1	    1
 ```
 
-"Bitsel ve" işlecinin ürettiği değer, terimlerinin karşılıklı bitlerinin "ve" işlemine sokulmasıyla elde edilen değerdir:
+"Bitsel ve" operatörünün ürettiği değer, terimlerinin karşılıklı bitlerinin "ve" işlemine sokulmasıyla elde edilen değerdir:
 
-1 biti "bitsel ve" işleminde etkisiz elemandır.
-0 biti "bitsel ve" işleminde yutan elemandır.
++ 1 biti "bitsel ve" işleminde etkisiz elemandır.
++ 0 biti "bitsel ve" işleminde yutan elemandır.
 
 ```
 #include <stdio.h>
@@ -224,7 +232,7 @@ int main()
 }
 ```
 
-"Mantıksal ve" işleci yerine yanlışlıkla "bitsel ve" işlecini kullanmak sık yapılan bir hatadır. Aşağıdaki kodu inceleyin:
+"Mantıksal ve" operatörü yerine yanlışlıkla "bitsel ve" operatörünü kullanmak sık yapılan bir hatadır. Aşağıdaki kodu inceleyin:
 
 ```
 #include <stdio.h>
@@ -253,7 +261,7 @@ int main()
 }
 ```
 
-Yukarıdaki programda standart giriş akımından alınan x ve y değerlerinin çoğu için hem lojik ve hem bitsel ve işleci için ekrana aynı yazının yazdırıldığını göreceksiniz. Ancak şimdi x 7517 y ise 8866 değerinde olsun:
+Yukarıdaki programda standart giriş akımından alınan `x` ve `y` değerlerinin çoğu için hem lojik ve hem bitsel ve operatörü için ekrana aynı yazının yazdırıldığını göreceksiniz. Ancak şimdi `x` değişkeni  `7517`` y değişkeni ise `8866` değerinde olsun:
 
 ```
 x       7517   0001110101011101
@@ -261,11 +269,11 @@ y       8866   0010001010100010
 x & y    0     0000000000000000
 ```
 
-Bu durumda x && y ifadesinin değeri 1 (lojik doğru) iken x & y ifadesini değeri 0 (lojik yanlış) olacak.
+Bu durumda `x && y` ifadesinin değeri `1 (lojik doğru)` iken `x & y` ifadesini değeri `0 (lojik yanlış)` olacak.
 
 ## bitsel özel veya İşleci
 
-Bitsel "özel veya" işleci (bitwise exor) işleç öncelik tablomuzun 9. seviyesinde yer alıyor. Bu seviyenin öncelik yönü yine soldan sağadır (left associative). Bu işlecin bir yan etkisi yoktur, yani işlecin terimleri olan nesnelerin değeri değişmez. Bitsel özel veya işlevi terimleri olan tamsayıların karşılıklı bitlerini özel veya (exclusive or) işlemine sokarak bir değer elde eder. Bitsel "özel veya" işlecine ilişkin işlem tablosu aşağıdaki gibidir:
+Bitsel "özel veya" operatörü` (bitwise exor)` operatör öncelik tablomuzun 9. seviyesinde yer alıyor. Bu seviyenin öncelik yönü yine soldan sağadır `(left associative)`. Bu operatörün bir yan etkisi yoktur, yani operatörün operandları olan nesnelerin değeri değişmez. Bitsel özel veya işlevi operandları olan tamsayıların karşılıklı bitlerini özel veya `(exclusive or)` işlemine sokarak bir değer elde eder. Bitsel "özel veya" operatörüne ilişkin işlem tablosu aşağıdaki gibidir:
 
 ```
 x	y	x ^ y
@@ -275,7 +283,7 @@ x	y	x ^ y
 1	1	0
 ```
 
-Yukarıdaki tablo şöyle özetlenebilir: İşlecin terimlerinden aynı değere sahip ise, üretilen değer 0, terimlerden biri diğerinden farklı ise üretilen değer 1 olur. Aşağıdaki kodu derleyip çalıştırın:
+Yukarıdaki tablo şöyle özetlenebilir: Operatörün operandları aynı değere sahip ise, üretilen değer `0`, operandlar farlı değerlerde ise üretilen değer `1` olur. Aşağıdaki kodu derleyip çalıştırın:
 
 ```
 #include <stdio.h>
@@ -325,9 +333,9 @@ int main()
 
 Bazı şifreleme algoritmalarında "özel veya" işleminin bu özelliğinden faydalanılır. 
 
-## bitsel veya işleci
+## bitsel veya operatörü
 
-"Bitsel veya" (bitwise or) işleci, işleç öncelik tablomuzun 10. seviyesindedir ve bu işlecin öncelik yönü soldan sağadır. Bu işlecin de yan etkisi yoktur, yani terimi olan nesnelerin değeri değişmez.  Bitsel özel veya işlec terimleri olan tamsayıların karşılıklı bitlerini "veya" işlemine sokar. Bitsel veya işlecine ilişkin işlem tablosu şöyledir:
+"Bitsel veya" `(bitwise or)` operatörü, operatör öncelik tablomuzun 10. seviyesindedir ve bu operatörün öncelik yönü soldan sağadır. Bu operatörün de yan etkisi yoktur, yani operandı olan nesnelerin değeri değişmez.  Bitsel özel veya operatörü operandları olan tamsayıların karşılıklı bitlerini "veya" işlemine sokar. Bitsel veya operatörüne ilişkin işlem tablosu şöyledir:
 
 ```
 x	y	x | y
@@ -337,7 +345,7 @@ x	y	x | y
 0	0	0
 ```
 
-0 biti “bitsel veya” işleminde etkisiz elemandır. 1 biti “bitsel veya” işleminde yutan elemandır.
+`0` biti “bitsel veya” işleminde etkisiz elemandır. `1` biti “bitsel veya” işleminde yutan elemandır.
 Aşağıdaki programı derleyerek çalıştırın:
 
 ```
@@ -362,7 +370,7 @@ int main()
 }
 ```
 
-Mantıksal işleçlerden farklı olarak bitsel işleçler kısa devre davranışına sahip değildir. Yani bu işleçlerin her iki terimi de mutlaka işlenir. 
+Mantıksal operatörlerden farklı olarak bitsel operatörler kısa devre davranışına sahip değildir. Yani bu operatörlerin her iki terimi de mutlaka işlenir. 
 
 ```
 #include <stdio.h>
@@ -384,9 +392,9 @@ int main()
 }
 ```
 
-## bitsel işlemli atama işleçleri
+## bitsel işlemli atama operatörleri
 
-Bitsel değil işlecinin dışında, tüm bitsel işleçlere ilişkin işlemli atama biçimleri vardır. Daha önce de belirtildiği gibi bitsel işleçlerin yan etkileri (side effect) yoktur. Bitsel işleçler terimleri olan nesnelerin bellekteki değerlerini değiştirmez. Bir bitsel işleç ile bir nesnenin değerinin değiştirilmesi isteniyorsa yazma ve okuma kolaylığı için için işlemli atma işleçleri tercih edilmelidir:
+Bitsel değil operatörünün dışında, tüm bitsel işleçlere ilişkin işlemli atama biçimleri vardır. Daha önce de belirtildiği gibi bitsel operatörlerin yan etkileri `(side effect)` yoktur. Bitsel operatörler terimleri olan nesnelerin bellekteki değerlerini değiştirmez. Bir bitsel operatör ile bir nesnenin değerinin değiştirilmesi isteniyorsa yazma ve okuma kolaylığı için için işlemli atma operatörleri tercih edilmelidir:
 
 `x = x << y` yerine `x <<= y`
 `x = x >> y` yerine `x >>= y`
@@ -396,7 +404,7 @@ Bitsel değil işlecinin dışında, tüm bitsel işleçlere ilişkin işlemli a
 
 ifadeleri kullanılabilir.
 
-Bitsel özel veya işlemli atama işleçleriyle, tamsayı türlerinden iki değişkenin değerlerinin, üçüncü bir değişken kullanılmadan takas (swap) edilmesi sık kullanılan bir C idiyomudur:
+Bitsel özel veya işlemli atama operatörleriyle, tamsayı türlerinden iki değişkenin değerlerinin, üçüncü bir değişken kullanılmadan takas `(swap)` edilmesi `"exorswap"` olarak isimlendirilen bir `C` idiyomudur.
 
 ```
 #include <stdio.h>
@@ -417,12 +425,12 @@ int main()
 }
 ```
 
-Yukarıdaki programda, x ve y değişkenlerinin değerleri takas ediliyor.
+Yukarıdaki programda, `x` ve `y` değişkenlerinin değerleri takas ediliyor.
 
-Özellikle alt seviyeli kodlarda bir tamsayının bitleri üzerinde bazı işlemlerin yapılması (bitwise manipulation) sıklıkla gerekli olur. En sık yapılan bitsel işlemler şunlardır:
+Özellikle alt seviyeli kodlarda bir tamsayının bitleri üzerinde bazı işlemlerin yapılması `(bitwise manipulation)` sıklıkla gerekli olur. En sık yapılan bitsel işlemler şunlardır:
 
 ## bir tamsayının belirli bir bitinin birlenmesi
-Buna tamsayının belirli bir bitinin "set edilmesi" de denir. Bir tamsayının belirli bir bitini birlemek için, tamsayı ilgili biti 1 olan ve diğer bitleri 0 olan bir sayıyla "bitsel veya" işlemine sokulmalıdır. Çünkü bitsel veya işleminde 1 yutan eleman 0 ise etkisiz elemandır. Aşağıdaki koda bakalım:
+Buna tamsayının belirli bir bitinin `"set edilmesi"` de denir. Bir tamsayının belirli bir bitini birlemek için, tamsayı ilgili biti `1` olan ve diğer bitleri `0` olan bir sayıyla "bitsel veya" işlemine sokulmalıdır. Çünkü bitsel veya işleminde `1` yutan eleman `0` ise etkisiz elemandır. Aşağıdaki koda bakalım:
 
 ```
 #include <stdio.h>
@@ -439,18 +447,23 @@ int main()
 }
 ```
 
-Yukarıdaki kodda ch değişkeninin 5. biti birleniyor:
+Yukarıdaki kodda `ch` değişkeninin `5.` biti birleniyor:
 
-x bir tamsayı, n de bu sayının herhangi bir bitinin indeksi olmak üzere bir tamsayının n. bitini birleyecek bir ifade şu biçimde yazılabilir:
+`x` bir tamsayı, `n` de bu sayının herhangi bir bitinin indeksi olmak üzere bir tamsayının`n`. bitini birleyecek bir ifade şu biçimde yazılabilir:
 
+```
 x |= 1 << k
+```
 Bu tür bitsel işlemlerde kullanılan bitleri manipüle etmek için kullanılan
 
+```
 1 << k
-gibi ifadelere "bitsel maske" (bitmask) denir.
+```
 
-bir tamsayının belirli bir bitinin sıfırlanması
-Bir tamsayının belirli bir bitini sıfırlamak (clear / reset) için tamsayı, ilgili biti 0 olan ve diğer bitleri 1 olan bir maskeyle "bitsel ve" işlemine sokulur. Çünkü "bitsel ve" işleminde 0 yutan eleman 1 ise etkisiz elemandır. Bu bitsel maske aynı biti birlemekte kullanılan maskenin bitsel değilidir. Aşağıdaki örnekte bir tamsayının 5. biti sıfırlanıyor:
+gibi ifadelere "bitsel maske" `(bitmask)` denir.
+
+## bir tamsayının belirli bir bitinin sıfırlanması
+Bir tamsayının belirli bir bitini sıfırlamak `(clear / reset)` için tamsayı, ilgili biti `0` olan ve diğer bitleri `1` olan bir maskeyle "bitsel ve" işlemine sokulur. Çünkü "bitsel ve" işleminde `0` yutan eleman `1` ise etkisiz elemandır. Bu bitsel maske aynı biti birlemekte kullanılan maskenin bitsel değilidir. Aşağıdaki örnekte bir tamsayının `5.` biti sıfırlanıyor:
 
 ```
 #include <stdio.h>
@@ -466,18 +479,22 @@ int main()
 }
 ```
 
-x bir tamsayı, n de bu sayının herhangi bir bitinin indeksi olmak üzere, x tamsayısının n. bitini sıfırlayan bir ifade aşağıdaki gibi genelleştirilebilir:
+`x` bir tamsayı, `n` de bu sayının herhangi bir bitinin indeksi olmak üzere, `x` tamsayısının `n.` bitini sıfırlayan bir ifade aşağıdaki gibi genelleştirilebilir:
 
+```
 x  &= ~(1 << k);
+```
 
 ## bir tamsayının belirli bir bitini değiştirmek
-Bazı kodlarda bir tamsayının belirli bir bitinin değiştirilmesi (toggle - flip) gerekir. Yani söz konusu bit 1 ise 0, 0 ise 1 yapılmalıdır. Bu amaçla "bitsel özel veya" işleci kullanılır. Bitsel özel veya işlecinde 0 biti etkisiz elemandır.
-Bir sayının n. bitinin değerini değiştirmek için, sayı, n. biti 1, diğer bitleri 0 olan bir maske ile "bitsel özel veya" işlemine sokulur. x, bir tamsayı, n de bu sayının herhangi bir bit numarası olmak üzere, x tamsayısının n. bitini ters çeviren bir ifade şu şekilde yazılabilir:
+Bazı kodlarda bir tamsayının belirli bir bitinin değiştirilmesi `(toggle - flip)` gerekir. Yani söz konusu bit `1` ise `0`, `0` ise `1` yapılmalıdır. Bu amaçla "bitsel özel veya" operatörü kullanılır. Bitsel özel veya işlecinde `0` biti etkisiz elemandır.
+Bir sayının `n`. bitinin değerini değiştirmek için, sayı, `n.` biti `1`, diğer bitleri `0` olan bir maske ile "bitsel özel veya" işlemine sokulur. `x`, bir tamsayı, `n` de bu sayının herhangi bir bit numarası olmak üzere, `x` tamsayısının `n.` bitini ters çeviren bir ifade şu şekilde yazılabilir:
 
+```
 x ^= 1 << n;
+```
 
-bir tamsayının belirli bir bit değerinin elde edilmesi (0 mı 1 mi)
-Bir tamsayının belirli bir bitinin 0 mı 1 mi olduğunun öğrenilmesi için, söz konusu tamsayı, ilgili biti 1 olan ve diğer bitleri 0 olan bir maskeyle "bitsel ve" işlemine sokulmasından elde edilen değer mantıksal olarak yorumlanmalıdır. Çünkü "bitsel ve" işleminde 0 yutan eleman, 1 ise etkisiz elemandır. İfadenin lojik değeri "dogru" olursa, ilgili bit 1, yanlış ise ilgili bit 0 demektir. x bir tamsayı, n de bu tamsayının herhangi bir bitinin indeksi olmak üzere x tamsayısının n. bitinin 1 ya da 0 olduğunu sınayan bir deyim aşağıdaki biçimde yazılabilir:
+## bir tamsayının belirli bir bit değerinin elde edilmesi (0 mı 1 mi)
+Bir tamsayının belirli bir bitinin `0` mı `1` mi olduğunun öğrenilmesi için, söz konusu tamsayı, ilgili biti `1` olan ve diğer bitleri `0` olan bir maskeyle "bitsel ve" işlemine sokulmasından elde edilen değer mantıksal olarak yorumlanmalıdır. Çünkü "bitsel ve" işleminde `0` yutan eleman, `1` ise etkisiz elemandır. İfadenin lojik değeri "dogru" olursa, ilgili bit `1`, yanlış ise ilgili bit `0` demektir. `x` bir tamsayı, `n` de bu tamsayının herhangi bir bitinin indeksi olmak üzere `x` tamsayısının `n`. bitinin `1` ya da `0` olduğunu sınayan bir deyim aşağıdaki biçimde yazılabilir:
 
 ```
 if (x & (1 << n))
@@ -485,7 +502,7 @@ if (x & (1 << n))
 else
 	/* n. bit 0 */
  ```
-Bir pozitif tamsayının tek sayı olup olmadığı "bitsel ve" işleciyle sınanabilir. Bir tamsayı tek sayı ise sayının 0. biti 1'dir.
+Bir pozitif tamsayının tek sayı olup olmadığı "bitsel ve" operatöryle sınanabilir. Bir tamsayı tek sayı ise sayının `0`. biti `1`'dir.
 
 ```
 #include <stdio.h>
@@ -596,7 +613,7 @@ extern const char asbc[];
                asbc[((x >> 16) & 0xff)] + asbc[((x >> 24) & 0xff)]
 ```
 
-Kod dosyamızda tanımlanmış olan 256 öğeli asbc dizisi bir arama tablosu (lookup table) olarak kullanılıyor. Bu dizinin n indisli öğesinin değeri n tamsayısının kaç bitinin bir olduğu bilgisi. Örneğin dizinin 15 indisli öğesinin değeri 4. Çünkü 15 tamsayı değerinin 4 biti 1.
+Kod dosyamızda tanımlanmış olan 256 öğeli `asbc dizisi bir arama tablosu (lookup table) olarak kullanılıyor. Bu dizinin n indisli öğesinin değeri n tamsayısının kaç bitinin bir olduğu bilgisi. Örneğin dizinin 15 indisli öğesinin değeri 4. Çünkü 15 tamsayı değerinin 4 biti 1.
 Böylece bir byte değerini bu diziye indis yaptığımızda o byte'ın kaç bitinin 1 olduğunu bu tablodan elde edebiliyoruz. 32 bitlik bir tamsayı toplam 4 byte'a sahip olduğu için her bir byte için 1 olan bit sayısını ayrı ayrı bu tablodan bakarak buluyor ve bu değerleri topluyoruz.
 Bir tamsayının düşük anlamlı byte'ını tamsayı değeri olarak elde etmek için tamsayıyı 255 değeriyle bitsel ve (&) işlemine sokmamız gerekiyor. 32 bitlik tamsayımız x
 
