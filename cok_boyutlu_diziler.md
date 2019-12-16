@@ -212,7 +212,7 @@ Bu dizinin adresi nedir? Bu dizinin ilk elemanı `a[0]`'dır. `a[0]`, `64` el
 ```
 &a[0]
 ```
-Bu ifadenin türü nedir? C dilini yeni öğrenmekte olanlar böyle bir ifadenin türünün
+Bu ifadenin türü nedir? `C` dilini yeni öğrenmekte olanlar böyle bir ifadenin türünün
 
 ```
 int **
@@ -501,7 +501,7 @@ int main()
 	return 0;
 }
 ```
-main işlevi içinde iki boyutlu names isimli bir dizi tanımlanıyor:
+`main` işlevi içinde iki boyutlu names isimli bir dizi tanımlanıyor:
 
 ```
 char names[ARRAY_SIZE][20];
@@ -532,7 +532,7 @@ char names[5][10] = {"Ali", "Veli", "Hasan", "Tuncay", "Deniz"};
 ```
 Yukarıda, `names` isimli iki boyutlu dizinin elemanları olan, `10` elemanlı `char` türden dizilere, string sabitleri `(string literals)` ilk değer veriliyor.
 
-Şimdi de iki boyutlu char türden bir dizi üzerinde işlem yapacak bazı işlevler tanımlayalım:
+Şimdi de iki boyutlu `char` türden bir dizi üzerinde işlem yapacak bazı işlevler tanımlayalım:
 
 ```
 #include <stdio.h>
