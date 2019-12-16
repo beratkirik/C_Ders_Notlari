@@ -141,7 +141,7 @@ case 3.5:
 ```
 Yukarıdaki `case` ifadesi geçersizdir. `3.5` bir gerçek sayı sabitidir.
 
-C'de kendisi `const` nesneler sabit ifadesi gereken yerde kullanılamazlar. `C++` dilinde sabit ifadesiyle ilk değerlerini almış `const` nesneler sabit ifadesi gereken yerlerde kullanılabilirler. Aşağıdaki switch deyimi `C`'de geçersiz `C++` dilinde geçerlidir:
+`C`'de kendisi `const` nesneler sabit ifadesi gereken yerde kullanılamazlar. `C++` dilinde sabit ifadesiyle ilk değerlerini almış `const` nesneler sabit ifadesi gereken yerlerde kullanılabilirler. Aşağıdaki switch deyimi `C`'de geçersiz `C++` dilinde geçerlidir:
 
 ```
 int getSize(void);
