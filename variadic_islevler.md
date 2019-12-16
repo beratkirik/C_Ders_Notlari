@@ -8,7 +8,7 @@ Bir işlevin istenilen sayıda değerle çağrılması programlamada genel bir i
 
 Farklı programlama dillerinin böyle bir işlevin oluşturulmasını sağlayan farklı araçları var. Örneğin `C++` dilinde bu yapı için ağırlıklı olarak türden bağımsız programlama `(generic programming)` paradigmasına destek veren araçlardan faydalanılıyor. Bu yazının amacı C dilinde değişken sayıda argümanla çağrılabilen işlevleri ayrıntılı olarak incelemek.
 
-C dilinde bir işlevin `"variadic"` olduğunu gösteren `...` atomu. Yan yana yazılmış üç nokta karakterinin oluşturduğu atoma `(token)` ingilizcede `ellipsis` deniyor. Bir işlevin `"variadic"` olması için son parametre değişkeni olarak ... atomunun yazılması gerekiyor. üç nokta atomu atomu ile gösterilen parametreye bundan sonra `"variadic parametre"` diyeceğim.
+C dilinde bir işlevin `"variadic"` olduğunu gösteren `...` atomu. Yan yana yazılmış üç nokta karakterinin oluşturduğu atoma `(token)` ingilizcede `ellipsis` deniyor. Bir işlevin `"variadic"` olması için son parametre değişkeni olarak `...` atomunun yazılması gerekiyor. üç nokta atomu atomu ile gösterilen parametreye bundan sonra `"variadic parametre"` diyeceğim.
 
 ```
 void print(int n, ...);
@@ -38,7 +38,7 @@ Seçime bağlı olarak gönderilecek argümanların türlerinin "variadic" işle
 `variadic` bir işlev tanımlayabilmemiz için standart `<stdarg.h>` başlık dosyasında bildirilen `va_list` türünün ve yine aynı başlık dosyasında tanımlanan bazı standart makroların kullanılması gerekiyor:
 
 ## va_list
-`va_list` opsiyonel argümanları gösterecek bir pointer türüne verilen bir tür eş ismi `(type alias)`. standartlar `va_list`'in hangi türe bir `typedef` bildirimi ile eş isim olarak seçileceğini derleyicilere bırakmış. Seçimlik argümanların dolaşılabilmesi için `va_list` türünden bir değişkenin tanımlanması ve bu değişkene `va_start` makrosuyla değer verilmesi gerekiyor.
+`va_list` opsiyonel argümanları gösterecek bir pointer türüne verilen bir tür eş ismi `(type alias)`. Standartlar `va_list`'in hangi türe bir `typedef` bildirimi ile eş isim olarak seçileceğini derleyicilere bırakmış. Seçimlik argümanların dolaşılabilmesi için `va_list` türünden bir değişkenin tanımlanması ve bu değişkene `va_start` makrosuyla değer verilmesi gerekiyor.
 
 ## va_start
 `va_start` aşağıdaki gibi bir makro:
@@ -46,7 +46,7 @@ Seçime bağlı olarak gönderilecek argümanların türlerinin "variadic" işle
 ```
 void va_start (va_list args, last_req)
 ```
-Bu makro seçimlik argümanları dolaşma işleminde kullanılacak `va_list` türünden değişkene  değerini veriyor. Böylece `va_list` türünden değişkenin seçimlik ilk argümanı göstermesi sağlanıyor. Makronun ikinci parametresine işlevin türü belirtilerek isimlendirilmiş son parametresinin isminin geçilmesi gerekiyor.
+Bu makro seçimlik argümanları dolaşma işleminde kullanılacak `va_list` türünden değişkene değerini veriyor. Böylece `va_list` türünden değişkenin seçimlik ilk argümanı göstermesi sağlanıyor. Makronun ikinci parametresine işlevin türü belirtilerek isimlendirilmiş son parametresinin isminin geçilmesi gerekiyor.
 
 ## va_arg
 ```
@@ -165,7 +165,7 @@ int main()
 	return 0;
 }
 ```
-Bir başka teknik `variadic` işlevin kendisini çağıran koddan bir yazının adresini alarak kendisine gönderilen seçimlik argümanların sayısını bu yazıdan elde etmesi. stdio kütüphanesinde bildirilen standart `scanf` ve `printf` işlevleri de bu tekniği kullanıyor. Aşağıda `printf` işlevini sarmalayan basitleştirilmiş bir `print` işlevi tanımlıyoruz:
+Bir başka teknik `variadic` işlevin kendisini çağıran koddan bir yazının adresini alarak kendisine gönderilen seçimlik argümanların sayısını bu yazıdan elde etmesi. `stdio` kütüphanesinde bildirilen standart `scanf` ve `printf` işlevleri de bu tekniği kullanıyor. Aşağıda `printf` işlevini sarmalayan basitleştirilmiş bir `print` işlevi tanımlıyoruz:
 
 ```
 #include <stdio.h>
