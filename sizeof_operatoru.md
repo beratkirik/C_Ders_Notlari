@@ -20,9 +20,9 @@ Operatör bu durumda terimi olan türden bir nesnenin kullanılan sistemde, bell
 sizeof(int)
 ```
 
-ifadesinin değeri tipik olarak 4'tür.
+ifadesinin değeri tipik olarak `4`'tür.
 
-+ Operatörün operandı olarak herhangi bir ifade kullanılabilir. Bu durumda terimin parantez içine alınması zorunlu değildir. Ancak programcıların çoğu okunabilirlik açısından operatörün operandı olan ifadeyi parantez içine almayı yeğler:
++ Operatörün operandı olarak herhangi bir ifade kullanılabilir. Bu durumda operandın parantez içine alınması zorunlu değildir. Ancak programcıların çoğu okunabilirlik açısından operatörün operandı olan ifadeyi parantez içine almayı yeğler:
 
 ```
 #include <stdio.h>
@@ -101,7 +101,7 @@ Dizi için elde edilen `sizeof` değerini dizinin bir öğesi için elde edilen 
 sizeof(a) / sizeof(a[0])
 ```
 
-bir sabit ifadesidir ve bu ifadenin değeri *a* dizisinin boyutudur. Dizinin bir öğesini bir ifade olarak kullanmak için içerik *(dereferencing)* işleci de kullanılabilir:
+bir sabit ifadesidir ve bu ifadenin değeri `a` dizisinin boyutudur. Dizinin bir öğesini bir ifade olarak kullanmak için içerik `(dereferencing)` işleci de kullanılabilir:
 
 ```
 sizeof(a) / sizeof(*a)
@@ -128,21 +128,21 @@ int main()
 }
 ```
 
-*main* işlevi içinde tanımlanan *int* türden *a* isimli dizi boyutu belirtilmeden ilk değer verilerek tanımlanmış. Bu durumda derleyici verilen ilk değerlerin sayısını sayarak dizinin boyutunu 8 kabul eder. *main* işlevi içinde yer alan *for* döngü deyimi, dizinin eleman sayısı kadar, yani *8* kez döner. Şimdi kaynak kodda değişiklik yapıldığını, *a* dizisine birkaç öğe daha eklendiğini düşünelim:
+`main` işlevi içinde tanımlanan `int` türden `a` isimli dizi boyutu belirtilmeden ilk değer verilerek tanımlanmış. Bu durumda derleyici verilen ilk değerlerin sayısını sayarak dizinin boyutunu `8` kabul eder. `main` işlevi içinde yer alan `for` döngü deyimi, dizinin eleman sayısı kadar, yani `8` kez döner. Şimdi kaynak kodda değişiklik yapıldığını, `a` dizisine birkaç öğe daha eklendiğini düşünelim:
 
 ```
 int a[] = {2, 5, 7, 8, 9, 23, 67, 34, 58, 45, 92};
 ```
 
-Bu durumda *for* döngü deyiminde bir değişiklik yapılmasına gerek kalmaz. Çünkü derleyici bu kez derleme zamanında dizinin boyutunu *11* olarak hesaplar ve *for* döngü deyimi içinde kullanılan
+Bu durumda `for` döngü deyiminde bir değişiklik yapılmasına gerek kalmaz. Çünkü derleyici bu kez derleme zamanında dizinin boyutunu `11` olarak hesaplar ve `for` döngü deyimi içinde kullanılan
 
 ```
 sizeof(a) / sizeof(a[0])
 ```
 
-ifadesi de bu kez 11 değerini üretir.
+ifadesi de bu kez `11` değerini üretir.
 
-`sizeof` operatörü ile dizi boyutunu elde eden ifade okuma ve yazma kolaylığı sağlaması için çoğunlukla bir işlevsel makro *(functional macro)* olarak kullanılır:
+`sizeof` operatörü ile dizi boyutunu elde eden ifade okuma ve yazma kolaylığı sağlaması için çoğunlukla bir işlevsel makro `(functional macro)` olarak kullanılır:
 
 ```
 #define asize(a)  (sizeof((a)) / sizeof((*a)))
@@ -150,7 +150,7 @@ ifadesi de bu kez 11 değerini üretir.
 
 #### sizeof operatörünün önceliği
 
-Tek terimli tüm operatörlerin, daha önce oluşturduğumuz operatör öncelik tablosunun ikinci seviyesinde yer aldığını biliyorsunuz. `sizeof` da ikinci seviyede bulunan bir operatördür:
+Tek operandlı tüm operatörlerin, daha önce oluşturduğumuz operatör öncelik tablosunun ikinci seviyesinde yer aldığını biliyorsunuz. `sizeof` da ikinci seviyede bulunan bir operatördür:
 
 ```
 #include <stdio.h>
@@ -167,19 +167,19 @@ int main()
 }
 ```
 
-Yukarıdaki kod *int* türünün *4* byte olduğu bir sistemde derleniyor olsun:
+Yukarıdaki kod `int` türünün `4` byte olduğu bir sistemde derleniyor olsun:
 
 ```
 sizeof x + 5
 ```
 
-ifadesinin değeri *9* iken
+ifadesinin değeri `9` iken
 
 ```
 sizeof (x + 5)
 ```
 
-ifadesinin değeri 4’tür.
+ifadesinin değeri `4`’tür.
 
 #### sizeof işlecinin terimi olan ifadenin yan etkisi
 
@@ -208,19 +208,19 @@ int main()
 }
 ```` 
 
-Yukarıdaki kodda *main* işlevi içinde *x* değişkeni arttırılmaz. 
+Yukarıdaki kodda `main` işlevi içinde `x` değişkeni arttırılmaz. 
 
 ```
 x++
 ```
 
-ifadesi *int* türdendir. Derleyici bu ifadeyi yalnızca bir tür bilgisi olarak ele alır. İfadenin türü *int* olduğundan *y* değişkenine `sizeof(int)` değeri atanır. Yine örnek kodda yer alan *func* işlevi çağrılmayacaktır.
+ifadesi `int` türdendir. Derleyici bu ifadeyi yalnızca bir tür bilgisi olarak ele alır. İfadenin türü `int` olduğundan `y` değişkenine `sizeof(int)` değeri atanır. Yine örnek kodda yer alan `func` işlevi çağrılmayacaktır.
 
 ```
 func()
 ```
 
-ifadesi *int* türdendir. Derleyici yine bu ifadeyi yalnızca bir tür bilgisi olarak ele alır. İfadenin türü *int* olduğundan *z* değişkenine `sizeof(int)`  değeri atanır.
+ifadesi `int` türdendir. Derleyici yine bu ifadeyi yalnızca bir tür bilgisi olarak ele alır. İfadenin türü `int` olduğundan `z` değişkenine `sizeof(int)`  değeri atanır.
 
 `sizeof` operatörünün ürettiği değer derleme zamanında elde edildiğinden bir sabit ifadesidir. Bu yüzden bu değer sabit ifadesi gereken her yerde kullanılabilir:
 
