@@ -83,9 +83,9 @@ Bütün bitleri `0` olan `0` tamsayısının bitsel değili bütün bitleri `1` 
 Bitsel sağa kaydırma operatörü >> `(bitwise right shift)`
 Bitsel sola kaydırma operatörü << `bitwise left shift)`
 
-Her iki operatör de, (oluşturduğumuz) öncelik tablosunun `5.` seviyesindedir. Dolayısıyla bu operatörlerin önceliği tüm aritmetik operatörlerden daha düşük, fakat karşılaştırma işleçlerinden daha yüksektir. Ara ek konumunda bulunan bitsel kaydırma operatörlerinin iki terimleri vardır `(binary infix)`.
+Her iki operatör de, (oluşturduğumuz) öncelik tablosunun `5.` seviyesindedir. Dolayısıyla bu operatörlerin önceliği tüm aritmetik operatörlerden daha düşük, fakat karşılaştırma operatörlerinden daha yüksektir. Ara ek konumunda bulunan bitsel kaydırma operatörlerinin iki operandları vardır `(binary infix)`.
 
-Kaydırma operatörlerinin sağ terimi, negatif değerde olmamalı ve sistemin `int` türünün toplam bit sayısından daha küçük olmalıdır. Bu koşullar sağlanmamış ise oluşan durum tanımsızdır `(undefined behaviour)`. Örneğin `Windows` sistemlerinde `int` türden bir değerin `32` ya da daha fazla sola ya da sağa kaydırılması tanımsızdır. Bu durumdan kaçınılmalıdır.
+Kaydırma operatörlerinin sağ operandı, negatif değerde olmamalı ve sistemin `int` türünün toplam bit sayısından daha küçük olmalıdır. Bu koşullar sağlanmamış ise oluşan durum tanımsızdır `(undefined behaviour)`. Örneğin `Windows` sistemlerinde `int` türden bir değerin `32` ya da daha fazla sola ya da sağa kaydırılması tanımsızdır. Bu durumdan kaçınılmalıdır.
 
 Bitsel sola kaydırma operatörü, sol operandı olan tamsayının, sağ operandı olan olan tamsayı kadar pozisyon sola kaydırılmasından elde edilen değeri üretir. Sınır dışına çıkan bitler için, sayının sağından `0` biti ile besleme yapılır. Aşağıdaki kodu inceleyin:
 
@@ -261,7 +261,7 @@ int main()
 }
 ```
 
-Yukarıdaki programda standart giriş akımından alınan `x` ve `y` değerlerinin çoğu için hem lojik ve hem bitsel ve operatörü için ekrana aynı yazının yazdırıldığını göreceksiniz. Ancak şimdi `x` değişkeni  `7517`` y değişkeni ise `8866` değerinde olsun:
+Yukarıdaki programda standart giriş akımından alınan `x` ve `y` değerlerinin çoğu için hem lojik ve hem bitsel ve operatörü için ekrana aynı yazının yazdırıldığını göreceksiniz. Ancak şimdi `x` değişkeni  `7517` `y` değişkeni ise `8866` değerinde olsun:
 
 ```
 x       7517   0001110101011101
@@ -396,11 +396,13 @@ int main()
 
 Bitsel değil operatörünün dışında, tüm bitsel işleçlere ilişkin işlemli atama biçimleri vardır. Daha önce de belirtildiği gibi bitsel operatörlerin yan etkileri `(side effect)` yoktur. Bitsel operatörler terimleri olan nesnelerin bellekteki değerlerini değiştirmez. Bir bitsel operatör ile bir nesnenin değerinin değiştirilmesi isteniyorsa yazma ve okuma kolaylığı için için işlemli atma operatörleri tercih edilmelidir:
 
-`x = x << y` yerine `x <<= y`
-`x = x >> y` yerine `x >>= y`
-`x = x & y` yerine `x &= y`
-`x = x ^ y` yerine `x ^= y`
-`x = x | y` yerine `x |= y`
+```
+x = x << y yerine x <<= y
+x = x >> y yerine x >>= y
+x = x & y yerine x &= y
+x = x ^ y yerine x ^= y
+x = x | y yerine x |= y
+```
 
 ifadeleri kullanılabilir.
 
@@ -425,7 +427,8 @@ int main()
 }
 ```
 
-Yukarıdaki programda, `x` ve `y` değişkenlerinin değerleri takas ediliyor.
+Yukarıdaki programda, `x` ve `y` değişkenlerinin değerleri takas ediliyor. Bir tamsayı kendisiyle bitsel özel veya işlemine sokulursa `0`
+değeri elde edilir. Yani nesne kendisiyle bu yolla takas edilmemelidir.
 
 Özellikle alt seviyeli kodlarda bir tamsayının bitleri üzerinde bazı işlemlerin yapılması `(bitwise manipulation)` sıklıkla gerekli olur. En sık yapılan bitsel işlemler şunlardır:
 
@@ -537,14 +540,14 @@ biçimindedir, değil mi?
 
 `x &= 0xFC7F;`
 
-Şimdi de bir tamsayının bitlerini standart çıkış akımına yazdıran `showBits` isimli işlevi tanımlayalım. Sayının ilk olarak en yüksek anlamlı bitini yazdırmalıyız, değil mi?
+Şimdi de bir tamsayının bitlerini standart çıkış akımına yazdıran `showbits` isimli işlevi tanımlayalım. Sayının ilk olarak en yüksek anlamlı bitini yazdırmalıyız, değil mi?
 
 ```
 #include <stdio.h>
 
-void showBits(int x)
+void showbits(int x)
 {
-	int i = sizeof(int) * 8 - 1;
+	int i = (int)(sizeof(int) * 8 - 1);
 	for (; i >= 0; --i)
 		putchar (x >> i & 1 ? '1' : '0');
 }
@@ -555,20 +558,20 @@ int main()
 
 	printf("bir sayı giriniz : ");
 	scanf("%d", &val);
-	showBits(val);
+	showbits(val);
 
 	return 0;
 }
 ```
 
-`showBits` işlevinde `i` değişkenine tamsayının bit sayısının bir eksiği ile ilk değer veriliyor. Örneğin `32` bitlik int türü için `i` değişkeni `31` değeriyle hayata başlayacak. `i >> 31` ifadesini `1` değeri ile bitsel ve işlemine sokarak sayının `31.` bitinin `1` mi `0` mı olduğunu öğreneceğiz.
+`showbits` işlevinde `i` değişkenine tamsayının bit sayısının bir eksiği ile ilk değer veriliyor. Örneğin `32` bitlik `int` türü için `i` değişkenine `31` değeri verilecek. `i >> 31` ifadesini `1` değeri ile bitsel ve işlemine sokarak sayının `31.` bitinin `1` mi `0` mı olduğunu öğreneceğiz.
 
-Aşağıda aynı işi değişik farklı bir biçimde yapan `showBits2` isimli işlevi tanımlıyoruz:
+Aşağıda aynı işi farklı bir biçimde yapan `showbits2` isimli işlevi tanımlıyoruz:
 
 ```
 #include <stdio.h>
 
-void showBits2(int x)
+void showbits2(int x)
 {
 	unsigned int i = ~(~0u >> 1);
 	
