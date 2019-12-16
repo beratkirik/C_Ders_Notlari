@@ -113,7 +113,7 @@ int main()
 
 }
 ```
-Yukarıdaki kodda `main` işlevi içinde öğeleri `Student` türünden boyutu 10 olan bir dizi tanımlanıyor ve dizinin belirlenmiş öğelerine ilk değer veriliyor. Daha sonra dizinin `1` ve `2` indisli öğelerine `Student` türünden bileşik sabit ifadeleri ile atamalar yapılıyor. Aynı türden yapı nesnelerinin birbirlerine atanabildiğini hatırlayalım.
+Yukarıdaki kodda `main` işlevi içinde öğeleri `Student` türünden boyutu `10` olan bir dizi tanımlanıyor ve dizinin belirlenmiş öğelerine ilk değer veriliyor. Daha sonra dizinin `1` ve `2` indisli öğelerine `Student` türünden bileşik sabit ifadeleri ile atamalar yapılıyor. Aynı türden yapı nesnelerinin birbirlerine atanabildiğini hatırlayalım.
 
 `Compound literal` ifadeleri ile oluşturulan nesnelere sabit ifadeleri `(constant expressions)` ile ilk değer verme zorunluluğu yok:
 
@@ -258,4 +258,4 @@ void foo()
 }
 ```
 
-Bileşik sabit ifadeleri C++ dilinin sentaksında yer almıyor. Ancak başta `GCC` olmak üzere birçok `C++` derleyicisi bu özelliği bir eklenti `(extension)` olarak kullanıma sunuyor.
+Bileşik sabit ifadeleri `C++` dilinin sentaksında yer almıyor. Ancak başta `GCC` olmak üzere birçok `C++` derleyicisi bu özelliği bir eklenti `(extension)` olarak kullanıma sunuyor.
