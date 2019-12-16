@@ -1,6 +1,6 @@
 # String Sabitleri
 
-C dilinde çift tırnak içinde yazılan karakterlerin oluşturduğu atomlara `(token)` string sabiti `(string literal)` denir. Örneğin:
+`C` dilinde çift tırnak içinde yazılan karakterlerin oluşturduğu atomlara `(token)` string sabiti `(string literal)` denir. Örneğin:
 
 ```
 "Necati Ergin"
@@ -8,7 +8,7 @@ C dilinde çift tırnak içinde yazılan karakterlerin oluşturduğu atomlara `(
 "lütfen bir tamsayı giriniz : "
 ```
 ifadelerinin hepsi string sabitleridir.
-C'de bir string sabiti, derleyiciler tarafından aslında `char` türden bir dizi `(array)` olarak ele alınır ve bir ifade içinde kullanıldığında söz konusu dizinin adresine dönüştürülür. C derleyicileri, derleme aşamasında bir string sabiti ile karşılaştığında, bu stringi oluşturan karakterleri belleğin güvenli bir bölgesine, sonunda sonlandırıcı karakter `(null character)` olacak şekilde yerleştirecek bir kod üretirler. Bu durumda string sabitleri kod içinde kullanıldıklarında aslında, derleyici tarafından oluşturulan dizilerin başlangıç adresleri olarak ele alınırlar. Örneğin:
+`C`'de bir string sabiti, derleyiciler tarafından aslında `char` türden bir dizi `(array)` olarak ele alınır ve bir ifade içinde kullanıldığında söz konusu dizinin adresine dönüştürülür. `C` derleyicileri, derleme aşamasında bir string sabiti ile karşılaştığında, bu stringi oluşturan karakterleri belleğin güvenli bir bölgesine, sonunda sonlandırıcı karakter `(null character)` olacak şekilde yerleştirecek bir kod üretirler. Bu durumda string sabitleri kod içinde kullanıldıklarında aslında, derleyici tarafından oluşturulan dizilerin başlangıç adresleri olarak ele alınırlar. Örneğin:
 
 ```
 char *p = "CAN";
@@ -63,7 +63,7 @@ int main()
 ```
 "0123456789ABCDEF"[val]
 ```
-ifadesinin değeridir. Bu da string sabitine ilişkin yazının yerleştirildiği dizinin val indisli karakterinin değeridir. `char` türden bu nesnenin değeri de yazıda yer alan karakterlerden herhangi birinin kod numarasıdır. `main` işlevinde `0 – 15` aralığındaki tamsayı değerleri döngü içinde `get_hex_char` işlevine gönderilerek işlevden geri dönüş değeri ile alınan karakterler `putchar` işlevi ile standart çıkış akımına gönderiliyor. Programın ekran çıktısı aşağıdaki gibi olur:
+ifadesinin değeridir. Bu da string sabitine ilişkin yazının yerleştirildiği dizinin `val` indisli karakterinin değeridir. `char` türden bu nesnenin değeri de yazıda yer alan karakterlerden herhangi birinin kod numarasıdır. `main` işlevinde `0 – 15` aralığındaki tamsayı değerleri döngü içinde `get_hex_char` işlevine gönderilerek işlevden geri dönüş değeri ile alınan karakterler `putchar` işlevi ile standart çıkış akımına gönderiliyor. Programın ekran çıktısı aşağıdaki gibi olur:
 
 ```
 0123456789ABCDEF
@@ -85,7 +85,7 @@ int main()
 ```
 
 ## string sabitleri salt okunur yazılardır
-String sabitleri salt okunur bellek alanlarında tutulabilir. C dilinin standartlarına göre bir string sabitinde yer alan karakterlerin kaynak kod içinde değiştirilme girişimi tanımsız davranıştır `(undefined behavior)`. Aşağıdaki örneği inceleyin:
+String sabitleri salt okunur bellek alanlarında tutulabilir. `C` dilinin standartlarına göre bir string sabitinde yer alan karakterlerin kaynak kod içinde değiştirilme girişimi tanımsız davranıştır `(undefined behavior)`. Aşağıdaki örneği inceleyin:
 
 ```
 #include <stdio.h>
@@ -145,7 +145,7 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki kodda `p` isimli gösterici değişkene bir string sabiti ile ilk değer veriliyor. Daha sonra p değişkeninin değeri olan adres, bir `POSIX` işlevi olan `strrev`'e argüman olarak gönderiliyor. `strrev` işlevinin bildirimi şöyle:
+Yukarıdaki kodda `p` isimli gösterici değişkene bir string sabiti ile ilk değer veriliyor. Daha sonra `p` değişkeninin değeri olan adres, bir `POSIX` işlevi olan `strrev`'e argüman olarak gönderiliyor. `strrev` işlevinin bildirimi şöyle:
 
 ```
 char *strrev(char *p);
@@ -500,8 +500,8 @@ Yazının `(const olmayan) char` türden bir dizi içinde tutulması durumunda 
 `char` türden bir dizi otomatik ömürlü ya da statik ömürlü olabilir. Yani yazının bellekte kalma süresi dizinin ömrünün otomatik ya da statik ömürlü olmasına göre farklılık gösterir.
 
 ## strlen işlevi ve sizeof işleci
-Yazılar söz konusu olduğunda sizeof işleciyle strlen işlevinin birbiriyle karıştırılması sık karşılaşılan bir durumdur.
-`sizeof` derleme zamanında ele alınan bir işleçtir. Yani `sizeof` işlecinin ürettiği `size_t` türünden değer derleyici tarafından derleme zamanında elde edilir. `sizeof`'un bir isim (identifier) olmadığını bir anahtar sözcük `(keyword)` olduğunu biliyorsunuz.
+Yazılar söz konusu olduğunda `sizeof` işleciyle strlen işlevinin birbiriyle karıştırılması sık karşılaşılan bir durumdur.
+`sizeof` derleme zamanında ele alınan bir işleçtir. Yani `sizeof` işlecinin ürettiği `size_t` türünden değer derleyici tarafından derleme zamanında elde edilir. `sizeof`'un bir isim `(identifier)` olmadığını bir anahtar sözcük `(keyword)` olduğunu biliyorsunuz.
 
 ```
 sizeof("necati")
@@ -551,7 +551,7 @@ int main()
 	return 0;
 }
 ```
-Yukarıdaki `main` işlevinde `fileName` isimli diziye standart giriş akımından bir dosya ismi alınıyor.  Eger standart giriş akımından alınıp diziye kopyalanmış bir `'\n'` karakteri var ise bu karakterin yeri strchr işlevi ile ile bulunuyor ve bu karakterin yerine sonlandırıcı karakter yazılıyor. Böylece yazının sonundaki `'\n'` karakteri silinmiş oluyor. Diziye alınan isim daha sonra standart `strcpy` işleviyle newFileName isimli diziye kopyalanıyor.
+Yukarıdaki `main` işlevinde `fileName` isimli diziye standart giriş akımından bir dosya ismi alınıyor. Eger standart giriş akımından alınıp diziye kopyalanmış bir `'\n'` karakteri var ise bu karakterin yeri `strchr` işlevi ile ile bulunuyor ve bu karakterin yerine sonlandırıcı karakter yazılıyor. Böylece yazının sonundaki `'\n'` karakteri silinmiş oluyor. Diziye alınan isim daha sonra standart `strcpy` işleviyle newFileName isimli diziye kopyalanıyor.
 
 Standart `strrchr` işleviyle, kopyalanan yazı içinde `'.'` karakterinin olup olmadığı, yani dosya isminin bir uzantısı olup olmadığı sınanıyor. Eğer ismin içinde nokta karakteri varsa bu karakterin adresi `ptr` isimli gösterici değişkende tutuluyor. Dosya isminin uzantısı yoksa, standart `strcat` işleviyle yazının sonuna `".dat"` yazısı ekleniyor. Bu durumda artık dosya isminin uzantısı `"dat"` olur, değil mi? Daha sonra standart `strcmp` işleviyle, dosya ismi uzantısının `"doc", "gif"` ya da `"exe"` olup olmadığı sınanıyor. Dosyanın uzantısı `"doc"` ise bu uzantı `"txt"`, `"gif` "ise uzantı `"jpg"` olarak değiştiriliyor. Eğer dosya uzantısı `"exe"` ise, dosyanın uzantısı siliniyor. Bunun dışındaki tüm durumlarda dosya uzantıları, `"nec"` yapılıyor.
 
