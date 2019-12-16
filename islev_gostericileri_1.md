@@ -81,7 +81,7 @@ int main()
 Yukarıdaki `main` işlevinde tanımlanan `fp` isimli işlev göstericisi değişkene standart `strcmp` işlevinin adresiyle ilk değer veriliyor. Daha sonra yer alan deyimle `fp` değişkenine bu kez aynı parametrik yapıda olan standart `strcoll` işlevinin adresi atanıyor.
 
 ## işlev göstericileri ve gösterici aritmetiği
-Bir işlev göstericisi gösterici aritmetiği ile kullanılamaz yani işlev adresleri diğer adresler gibi tamsayılar ile toplanamaz. İşlev göstericisi değişkenler, `++` ya da `--` operatörlerinin operandı olamazlar. Zaten gösterici aritmetiğinin işlev adresleri için bir anlamı da olamazdı. Bir işlev adresine bir tamsayı toplayıp bellekte bir sonraki işlevin adresine erişmek nasıl mümkün olurdu? İşlev adresleri içerik operatörünün (dereferencing) terimi olabilir. Böyle ifadeler ile yalnızca işlev çağrısı yapılabilir.
+Bir işlev göstericisi gösterici aritmetiği ile kullanılamaz yani işlev adresleri diğer adresler gibi tamsayılar ile toplanamaz. İşlev göstericisi değişkenler, `++` ya da `--` operatörlerinin operandı olamazlar. Zaten gösterici aritmetiğinin işlev adresleri için bir anlamı da olamazdı. Bir işlev adresine bir tamsayı toplayıp bellekte bir sonraki işlevin adresine erişmek nasıl mümkün olurdu? İşlev adresleri içerik operatörünün `(dereferencing)` terimi olabilir. Böyle ifadeler ile yalnızca işlev çağrısı yapılabilir.
 
 ## işlev göstericileri ve karşılaştırma işlemleri
 İşlev göstericileri karşılaştırma operatörlerinin de operandı olabilirler.  Örneğin, iki işlev göstericisinin değerlerinin aynı adres olup olmadığı yani aynı işlevi gösterip göstermedikleri  `==` ya da `!=` operatörleri ile karşılaştırılabilir:
@@ -127,7 +127,7 @@ int main()
 	//
 }
 ```
-Yukarıdaki `main` işlevi içinde `fp` isimli işlev göstericisine `NULL` adresi ile ilk değer veriliyor. Daha aşağıdaki `if` deyiminde ise `fp` işlev göstericisinin değerinin NULL gösterici olup olmadığına yani fp'nin bir işlevi gösterip göstermediğine bakılıyor.
+Yukarıdaki `main` işlevi içinde `fp` isimli işlev göstericisine `NULL` adresi ile ilk değer veriliyor. Daha aşağıdaki `if` deyiminde ise `fp` işlev göstericisinin değerinin `NULL` gösterici olup olmadığına yani `fp`'nin bir işlevi gösterip göstermediğine bakılıyor.
 
 ## işlev çağrı operatörü (function call operator)
 İşlev çağrı operatörü tek operand alan son ek konumunda bir operatördür. Operatör öncelik tablomuzun en yüksek seviyesindedir `(primary expression)`. Bu operatörün operandı bir işlev adresidir. Operatör, programın akışını o adrese yöneltir, yani o adresteki kodun çalıştırılmasını sağlar. Örneğin:
@@ -163,7 +163,7 @@ biçiminde, ya da
 ```
 (*pf)()
 ```
-biçiminde çağrılabilir. Birinci biçim daha doğal görünmekle birlikte, `pf` isminin bir gösterici değişkenin ismi mi yoksa bir işlevin ismi mi olduğu çok açık değildir. İkinci biçimde, `*pf` ifadesinin öncelik parantezi içine alınması zorunludur. Çünkü işlev çağrı operatörünün  öncelik seviyesi, içerik (dereferencing) operatörünün öncelik seviyesinden daha yüksektir. Bu çağrı biçimi kullanılan ismin bir işlev göstericisine ilişkin olduğu vurgusunu yaptığından tercih edilebilmektedir. Aşağıdaki programı derleyerek çalıştırın:
+biçiminde çağrılabilir. Birinci biçim daha doğal görünmekle birlikte, `pf` isminin bir gösterici değişkenin ismi mi yoksa bir işlevin ismi mi olduğu çok açık değildir. İkinci biçimde, `*pf` ifadesinin öncelik parantezi içine alınması zorunludur. Çünkü işlev çağrı operatörünün  öncelik seviyesi, içerik `(dereferencing)` operatörünün öncelik seviyesinden daha yüksektir. Bu çağrı biçimi kullanılan ismin bir işlev göstericisine ilişkin olduğu vurgusunu yaptığından tercih edilebilmektedir. Aşağıdaki programı derleyerek çalıştırın:
 
 ```
 #include <stdio.h>
@@ -213,7 +213,7 @@ int main()
 	//
 }
 ```
-Yukarıdaki kodda global isim alanında, geri dönüş değeri `int` türden olan ve int türden iki parametre değişkeni olan işlevlerin adreslerinin türüne `Fptr` eş ismi veriliyor. Artık bu ismin kapsamı `(scope)` içinde bu isim bu türün karşılığı eş isim olarak kullanılabilir. Diğer bildirimlere sırasıyla bakalım:
+Yukarıdaki kodda global isim alanında, geri dönüş değeri `int` türden olan ve `int` türden iki parametre değişkeni olan işlevlerin adreslerinin türüne `Fptr` eş ismi veriliyor. Artık bu ismin kapsamı `(scope)` içinde bu isim bu türün karşılığı eş isim olarak kullanılabilir. Diğer bildirimlere sırasıyla bakalım:
 
 ```
 Fptr func(Fptr fp);
@@ -275,19 +275,19 @@ Bazı işlevler belirli bir tür için yazılır ve dolayısıyla yalnızca beli
 ```
 void sort_int_array(const int *ptr, size_t size);
 ```
-Böyle bir işlev öğeleri double türden olan bir diziyi sıralayamaz. Bu tür durumlarda aynı kodu, farklı türlere göre yeniden yazmak gerekir. Ancak aynı işi her tür için yapabilecek, türden bağımsız olarak tek bir işlevin yazılabilmesi mümkün olabilir. Türden bağımsız işlem yapan işlevlerin gösterici parametreleri void * türünden olmalıdır. Ancak parametrelerin void * türünden olması yalnızca çağrı açısından kolaylık sağlar. İşlevi yazacak olan programcı, yine de işleve geçirilen adresin türünü saptamak zorundadır. Bunun için işleve tür bilgisine karşılık gelen bir numaralandırma değeri gönderilebilir. Örneğin herhangi bir türden diziyi sıralayacak işlevin bildirimi aşağıdaki gibi olsun:
+Böyle bir işlev öğeleri double türden olan bir diziyi sıralayamaz. Bu tür durumlarda aynı kodu, farklı türlere göre yeniden yazmak gerekir. Ancak aynı işi her tür için yapabilecek, türden bağımsız olarak tek bir işlevin yazılabilmesi mümkün olabilir. Türden bağımsız işlem yapan işlevlerin gösterici parametreleri `void *` türünden olmalıdır. Ancak parametrelerin void * türünden olması yalnızca çağrı açısından kolaylık sağlar. İşlevi yazacak olan programcı, yine de işleve geçirilen adresin türünü saptamak zorundadır. Bunun için işleve tür bilgisine karşılık gelen bir numaralandırma değeri gönderilebilir. Örneğin herhangi bir türden diziyi sıralayacak işlevin bildirimi aşağıdaki gibi olsun:
 
 ```
 void *gSort(void *parray, size_t size, int type);
 ```
-Şimdi işlevi yazacak programcı type isimli parametre değişkenini kullanarak bir switch deyimiyle dışarıdan adresi alınan dizinin türünü saptayabilir. Ancak bu yöntem C'nin doğal türleri için çalışsa da programcı tarafından oluşturulan türlerden (user defined types) diziler için doğru çalışmaz.
-Böyle genel işlevler ancak işlev göstericileri kullanılarak yazılabilir. Şimdi bir dizinin en büyük elemanın adresiyle geri dönen bir işlevi türden bağımsız olarak yazmaya çalışalım. Dizi türünden bağımsız olarak işlem yapan işlevlerin, parametre değişkenleri  tipik olarak aşağıdaki gibi olur:
+Şimdi işlevi yazacak programcı type isimli parametre değişkenini kullanarak bir switch deyimiyle dışarıdan adresi alınan dizinin türünü saptayabilir. Ancak bu yöntem C'nin doğal türleri için çalışsa da programcı tarafından oluşturulan türlerden `(user defined types)` diziler için doğru çalışmaz.
+Böyle genel işlevler ancak işlev göstericileri kullanılarak yazılabilir. Şimdi bir dizinin en büyük elemanın adresiyle geri dönen bir işlevi türden bağımsız olarak yazmaya çalışalım. Dizi türünden bağımsız olarak işlem yapan işlevlerin, parametre değişkenleri tipik olarak aşağıdaki gibi olur:
 
 ```
 void *g_max(const void *pa, size_t size, size_t width, int (*cmp)(const void *, const void *));
 ```
 + Dizinin başlangıç adresini alacak `void *` türden bir gösterici
-+ Dizinin öğe sayısını alacak `size_t`` türünden bir parametre değişkeni.
++ Dizinin öğe sayısını alacak `size_t` türünden bir parametre değişkeni.
 + Dizinin bir öğesinin bellekte kaç byte yer kapladığı değerini yani `sizeof` değerini alan `size_t` türünden bir parametre değişkeni.
 + Dizinin elemanlarını karşılaştırma amacıyla kullanılacak bir işlevin başlangıç adresini alan, işlev göstericisi parametre değişkeni.
 
