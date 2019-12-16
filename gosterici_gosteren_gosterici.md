@@ -89,8 +89,7 @@ ifadesi ile `pp` gösterici değişkeninin gösterdiği nesneye yani `ptr` nesne
 ```
 *(*pp)
 ```
-ifadesiyle de `pp` gösterici değişkeninin gösterdiği nesnenin gösterdiği nesneye, yani p değişkeninin gösterdiği nesneye, yani `` değişkenine erişilir. Bu deyimin yürütülmesiyle y değişkenine `2000` değeri atanmış olur.
-`**pp` ifadesi, `pp`'nin gösterdiği nesnenin gösterdiği nesneye, yani `y` nesnesine karşılık gelir.
+ifadesiyle de `pp` gösterici değişkeninin gösterdiği nesnenin gösterdiği nesneye, yani `p` değişkeninin gösterdiği nesneye, yani `y` değişkenine erişilir. Bu deyimin yürütülmesiyle `y` değişkenine `2000` değeri atanmış olur. `**pp` ifadesi, `pp`'nin gösterdiği nesnenin gösterdiği nesneye, yani `y` nesnesine karşılık gelir.
 
 Şimdi de aşağıdaki kodu inceleyelim:
 
