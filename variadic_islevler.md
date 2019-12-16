@@ -1,5 +1,5 @@
 ## C dilinde istenilen sayıda argümanla çağrılabilen işlevler `(variadic functions)`
-Bir işlevin istenilen sayıda değerle çağrılması programlamada genel bir ihtiyaç ve programlama dillerinin çoğunda bu ihtiyacı karşılamaya yönelik araç ya da araçlar var. Özellikle giriş çıkış işlemlerine `(input-output operations)` yönelik hizmet veren kütüphanelerde böyle işlevler tercih ediliyor. Böyle işlevlere ingilizcede popüler olarak `"variadic functions"` deniyor.  Ben bu terim yerine Türkçede "istenilen sayıda argüman ile çağrılabilen işlev" terimini kullanacağım. Çağrıyı yapan kod böyle işlevlere, ne yaptırmak istediğine bağlı olarak, farklı sayıda veri gönderebiliyor. Örnekler verelim:
+Bir işlevin istenilen sayıda değerle çağrılması programlamada genel bir ihtiyaç ve programlama dillerinin çoğunda bu ihtiyacı karşılamaya yönelik araç ya da araçlar var. Özellikle giriş çıkış işlemlerine `(input-output operations)` yönelik hizmet veren kütüphanelerde böyle işlevler tercih ediliyor. Böyle işlevlere ingilizcede popüler olarak `"variadic functions"` deniyor. Ben bu terim yerine Türkçede "istenilen sayıda argüman ile çağrılabilen işlev" terimini kullanacağım. Çağrıyı yapan kod böyle işlevlere, ne yaptırmak istediğine bağlı olarak, farklı sayıda veri gönderebiliyor. Örnekler verelim:
 
 `print` isimli bir işlev kendisine gönderilen her bir ifadenin değerini ekrana yazdırıyor olabilir.
 `get_ave` isimli işlev kendisine gönderilen tam sayıların aritmetik ortalamasını hesaplıyor olabilir.
@@ -15,7 +15,7 @@ void print(int n, ...);
 int sum(int n, ...);
 double ave(int, int, ...)
 ```
-Bu işlevlerin çağrılmasına ilişkin genel kural şu: Çağrıyı yapan taraf `"variadic"` parametreden önce yer alan türleri belirtilmiş tüm parametre değişkenlerine argüman göndermek zorunda. variadic parametre için kendi seçimine bağlı olarak `(opsiyonel olarak)` dilediği sayıda argüman olarak gönderilebilir. Aşağıdaki kodu inceleyelim:
+Bu işlevlerin çağrılmasına ilişkin genel kural şu: Çağrıyı yapan taraf `"variadic"` parametreden önce yer alan türleri belirtilmiş tüm parametre değişkenlerine argüman göndermek zorunda. `variadic` parametre için kendi seçimine bağlı olarak `(opsiyonel olarak)` dilediği sayıda argüman olarak gönderilebilir. Aşağıdaki kodu inceleyelim:
 
 ```
 void func(int, int, ...);
@@ -249,6 +249,7 @@ int main(void)
 
 	puts(p);
 	free(p);
-}```
+}
+```
 
 Yukarıdaki kodda ismi `concat` olan istenilen sayıda argümanla çağrılabilen bir işlev tanımlanıyor. `concat` işlevi kendisine adresleri gönderilen yazıları elde ettiği dinamik bir bellek bloğunda birleştiriyor. İşlevi çağıran kod, birleştirilecek son yazının adresinden sonra işleve başka bir yazı gönderilemediğini bildirmek amacıyla işleve `NULL` pointer geçiyor. Yukarıdaki kodda `va_copy` makrosunun kullanılması ile seçimlik argümanların iki kez dolaşıldığını görüyorsunuz.
